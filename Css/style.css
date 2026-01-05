@@ -1,0 +1,980 @@
+/* --- Google Font Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+    /* Tere Brand Colors (Logo se liye hue) */
+    --primary-blue: #003366; /* Dark Blue */
+    --primary-green: #4CAF50; /* Bright Green */
+    --neon-glow: #00ff88; /* Glowing Effect ke liye */
+    --glass-bg: rgba(255, 255, 255, 0.05); /* Glass Effect */
+    --text-color: #ffffff;
+    --bg-dark: #050510; /* Deep Dark Background */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-color);
+    /* Background me thoda gradient taaki glass effect dikhe */
+    background-image: radial-gradient(circle at 10% 20%, rgba(0, 51, 102, 0.4) 0%, transparent 40%),
+                      radial-gradient(circle at 90% 80%, rgba(76, 175, 80, 0.2) 0%, transparent 40%); 
+    min-height: 100vh;
+}
+
+/* --- Header / Navbar Styling --- */
+header {
+    position: fixed;
+    top: 20px; /* Thoda hawa me float karega */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%; /* Full width nahi, thoda gap side me */
+    max-width: 1200px;
+    z-index: 1000;
+}
+
+.head-con {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    
+    /* GLASSMORPHISM MAGIC ✨ */
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px); /* Dhundhla effect */
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Patla border */
+    border-radius: 50px; /* Pill shape round corners */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Logo Styling --- */
+.logo img {
+    height: 60px; /* Height adjust kar lena logo ke hisaab se */
+    width: auto;
+    display: block;
+    filter: drop-shadow(0 0 1px var(--neon-glow)); /* Thoda glow logo pe */
+}
+
+/* --- Navigation Links --- */
+.nav-list {
+    display: flex;
+    gap: 30px;
+}
+
+.menu {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+    font-size: 1rem;
+    position: relative;
+    transition: 0.3s ease;
+}
+
+.menu:hover, .menu-active {
+    color: var(--text-color);
+    text-shadow: 0 0 10px var(--neon-glow); /* Hover pe text chamkega */
+}
+
+/* Niche wali active line animation */
+.menu::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+    transition: 0.3s ease;
+}
+
+.menu:hover::after, .menu-active::after {
+    width: 100%;
+}
+
+/* --- CTA Button (Start Scaling) --- */
+.head-btn {
+    padding: 10px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    background: transparent;
+    border: 2px solid var(--primary-green); /* Green Border */
+    border-radius: 30px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.2);
+}
+
+/* Button Hover Effect - Fill Background */
+.head-btn:hover {
+    background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));
+    border-color: transparent;
+    box-shadow: 0 0 20px var(--primary-green); /* Neon Glow badh jayega */
+    transform: translateY(-2px);
+}
+
+/* --- Responsive (Mobile ke liye basic fix) --- */
+@media (max-width: 768px) {
+    header {
+        width: 100%;
+        top: 0;
+        border-radius: 0; /* Mobile pe full width glass */
+    }
+    .nav-list {
+        display: none; /* Mobile menu baad me JS se banana padega */
+    }
+}
+
+/* --- Home Section Container --- */
+.home {
+    width: 100%;
+    min-height: 100vh; /* Poori screen cover karega */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    position: relative;
+    overflow: hidden; /* Taaki bada text screen ke bahar na jaye */
+    
+    /* Background me thoda glow effect */
+    background-image: radial-gradient(circle at 50% 50%, #00ff8817 0%, transparent 50%);
+}
+
+.home-wrap {
+    position: relative;
+    text-align: center;
+    z-index: 10;
+    padding: 0 20px;
+}
+
+/* --- 1. The Background Outline Text (Stroke Effect) --- */
+.h-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Perfect Center */
+    
+    font-size: 10rem; /* Bohot bada size */
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1;
+    white-space: nowrap; /* Text tootna nahi chahiye */
+    z-index: -1; /* Main content ke piche */
+    
+    /* THE STROKE MAGIC ✨ */
+    color: transparent; /* Andar se khali */
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.1); /* Patli outline */
+    
+    /* Thoda sa neon glow outline pe */
+    filter: drop-shadow(0 0 10px rgba(0, 247, 255, 0.3));
+    user-select: none; /* User isse select na kar paye */
+}
+
+/* --- 2. The Main Foreground Text (Solid Gradient) --- */
+.h-main-text {
+    font-size: 6rem; /* Background se thoda chota */
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    /* Gradient Text Color */
+    background: linear-gradient(to right, #fff, var(--primary-blue), var(--primary-green));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    z-index: 1;
+    /* Neon Glow Shadow */
+    filter: drop-shadow(0 0 2px var(--neon-glow));
+    
+    animation: floatText 3s ease-in-out infinite alternate; /* Thoda hawa me teirega */
+}
+
+.h-main-text::before {
+    content: attr(data-text); /* HTML se text uthayega */
+    position: absolute;
+    
+    /* Isse ye bilkul center me aa jayega main text ke */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    z-index: -1; /* Main text ke piche */
+    font-size: 12rem; /* Background text bada hona chahiye */
+    font-weight: 900;
+    text-transform: uppercase;
+    white-space: nowrap; /* Tootna nahi chahiye */
+    
+    /* STROKE EFFECT */
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.08); /* Thoda aur subtle kiya */
+    filter: drop-shadow(0 0 10px rgba(0, 247, 255, 0.2));
+    pointer-events: none; /* Ispe click na ho */
+}
+
+/* --- Paragraph --- */
+.h-para {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    line-height: 1.6;
+}
+
+/* --- Buttons Container --- */
+.h-btns {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Common Button Style */
+.h-btn {
+    padding: 12px 35px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Primary Button (Start Scaling) - Filled */
+.H-btn-primary {
+    background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));
+    border: none;
+    color: white;
+    box-shadow: 0 0 8px var(--neon-glow);
+}
+
+.H-btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px var(--neon-glow);
+}
+
+/* Secondary Button (Our Services) - Outline */
+.H-btn-secondary {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.H-btn-secondary:hover {
+    border-color: var(--neon-glow);
+    color: var(--neon-glow);
+    box-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
+}
+
+/* --- Animation Keyframes --- */
+@keyframes floatText {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10px); }
+}
+
+/* --- Responsive Media Queries (Mobile Fixes) --- */
+@media (max-width: 768px) {
+    .h-bg-text {
+        font-size: 5rem; /* Mobile pe chota karo varna screen fat jayegi */
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+    }
+    
+    .h-main-text {
+        font-size: 3rem;
+    }
+    
+    .h-para {
+        font-size: 0.9rem;
+        padding: 0 15px;
+    }
+    
+    .h-btns {
+        flex-direction: column; /* Buttons ek ke niche ek */
+        gap: 15px;
+    }
+    
+    .h-btn {
+        width: 100%;
+    }
+}
+
+/* --- About Section Styling --- */
+.about {
+    width: 100%;
+    padding: 100px 5%; /* Top-Bottom padding taaki saans lene ki jagah ho */
+    background-color: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center; /* Vertically center */
+    justify-content: space-between;
+    gap: 60px; /* Image aur Text ke bich ka gap */
+}
+
+/* --- Left Side: Image with Neon Glow --- */
+.about-left {
+    flex: 1; /* Aadha hissa lega */
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.about-left img {
+    width: 100%;
+    max-width: 500px; /* Image zyada badi na ho jaye */
+    height: auto;
+    border-radius: 20px; /* Thoda rounded corners */
+    position: relative;
+    z-index: 2;
+    
+    /* Image par thoda glass border effect */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.about-left img:hover {
+    transform: scale(1.02); /* Hover pe thoda zoom */
+}
+
+/* The Abstract Neon Background (Reference ke Circle ki jagah) */
+.about-left::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+    filter: blur(60px); /* Soft Glow Effect */
+    border-radius: 50%;
+    z-index: 1;
+    opacity: 0.6;
+    animation: pulseGlow 4s infinite alternate;
+}
+
+/* --- Right Side: Text Content --- */
+.about-right {
+    flex: 1; /* Baaki aadha hissa */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+/* Small Tag: Who We Are */
+.about-title {
+    color: var(--neon-glow);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Bullet Point style (●) */
+.about-title::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background-color: var(--neon-glow);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--neon-glow);
+}
+
+/* Main Heading */
+.about-head {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 15px;
+    
+    /* Gradient Text Style */
+    background: linear-gradient(to right, #fff, var(--primary-green));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Sub-Heading */
+.about-intro {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 20px;
+    border-left: 3px solid var(--primary-blue); /* Left side blue line style */
+    padding-left: 15px;
+}
+
+/* Paragraph */
+.about-para {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* CTA Button styling (Based on your theme) */
+.about-right button {
+    padding: 14px 35px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    width: fit-content; /* Text ke hisaab se width */
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.3);
+}
+
+.about-right button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(76, 175, 80, 0.6);
+}
+
+/* --- Animation for Glow --- */
+@keyframes pulseGlow {
+    0% { opacity: 0.4; transform: translate(-50%, -50%) scale(0.9); }
+    100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+/* --- Responsive (Mobile) --- */
+@media (max-width: 900px) {
+    .about-wrap {
+        flex-direction: column; /* Mobile pe ek ke niche ek */
+        text-align: center; /* Center align text acha lagta hai mobile pe */
+    }
+
+    .about-left {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    
+    .about-head {
+        font-size: 2rem;
+    }
+    
+    .about-intro {
+        border-left: none; /* Mobile pe line hata di */
+        border-bottom: 3px solid var(--primary-blue); /* Niche laga di */
+        padding-bottom: 10px;
+        padding-left: 0;
+        display: inline-block;
+    }
+
+    .about-title {
+        justify-content: center; /* Center align title */
+    }
+
+    .about-right {
+        align-items: center; /* Button center karne ke liye */
+    }
+}
+
+/* --- Services Section --- */
+.services {
+    padding: 100px 5%;
+    background-color: var(--bg-dark);
+    position: relative;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Section Header --- */
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-subtitle {
+    color: var(--neon-glow);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    /* Wahi Gradient Text jo tune pehle use kiya tha */
+    background: linear-gradient(to right, #fff, var(--primary-green));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* --- Grid Layout --- */
+.service-grid {
+    display: grid;
+    /* Auto-fit magic: Mobile pe 1, Tablet pe 2, Desktop pe 3 columns */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+/* --- Service Card (Glassmorphism) --- */
+.service-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    
+    /* Subtle Shadow */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover Effect - Card Upar Uthega aur Glow karega */
+.service-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-green);
+    box-shadow: 0 10px 30px rgba(76, 175, 80, 0.2); /* Green Glow */
+}
+
+/* --- Icon Circle --- */
+.icon-box {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 25px auto;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Icon ka Background Gradient */
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+    
+    font-size: 1.8rem;
+    color: white;
+    transition: 0.4s ease;
+}
+
+/* Card Hover pe Icon ghumega */
+.service-card:hover .icon-box {
+    transform: rotateY(180deg);
+    box-shadow: 0 0 25px var(--neon-glow);
+}
+
+/* --- Typography inside Card --- */
+.service-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.service-card p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    .services {
+        padding: 60px 5%;
+    }
+}
+
+/* --- Footer Styling --- */
+.footer {
+    background-color: transparent;
+    color: var(--text-color);
+    padding: 80px 0 0 0;
+    position: relative;
+    overflow: hidden;
+    font-size: 0.95rem;
+    
+    /* Top Border Glow Line */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Background me thoda Neon Glow (Optional) */
+
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+    padding-bottom: 60px;
+}
+
+/* --- Columns --- */
+.footer-col {
+    flex: 1;
+    min-width: 200px; /* Mobile pe wrap ho jayega */
+}
+
+/* Logo & Desc */
+.footer-logo img {
+    width: 150px; /* Logo size adjust kar lena */
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));
+}
+
+.footer-desc {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin-bottom: 25px;
+    max-width: 300px;
+}
+
+/* --- Social Icons (Glassmorphism Buttons) --- */
+.footer-socials {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-socials a {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.footer-socials a:hover {
+    background: var(--primary-green);
+    color: white;
+    box-shadow: 0 0 15px var(--neon-glow);
+    transform: translateY(-3px);
+}
+
+/* --- Headings --- */
+.footer-col h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: white;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+/* Heading ke niche choti si green line */
+.footer-col h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 30px;
+    height: 2px;
+    background-color: var(--primary-green);
+    box-shadow: 0 0 5px var(--neon-glow);
+}
+
+/* --- Links Lists --- */
+.footer-links, .footer-contact {
+    list-style: none;
+}
+
+.footer-links li, .footer-contact li {
+    margin-bottom: 12px;
+}
+
+.footer-links li a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: 0.3s ease;
+    display: inline-block;
+}
+
+.footer-links li a:hover {
+    color: var(--primary-green);
+    transform: translateX(5px); /* Hover pe thoda right khiskega */
+    text-shadow: 0 0 5px var(--neon-glow);
+}
+
+/* --- Contact Info --- */
+.footer-contact li {
+    display: flex;
+    align-items: center; /* Icon aur text center align */
+    gap: 15px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-contact li i {
+    color: var(--primary-green);
+    font-size: 1.1rem;
+}
+
+.footer-contact li a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-contact li a:hover {
+    color: white;
+}
+
+/* --- Footer Bottom (Copyright) --- */
+.footer-bottom {
+    background: rgba(0, 0, 0, 0.3); /* Thoda dark background alag dikhane ke liye */
+    padding: 20px 0;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-bottom p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+}
+
+.highlight {
+    color: var(--primary-green);
+    font-weight: 600;
+}
+
+/* --- Responsive (Mobile) --- */
+@media (max-width: 768px) {
+    .footer-row {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .footer-col {
+        width: 100%;
+    }
+}
+
+/* --- Contact Section --- */
+.contact {
+    padding: 100px 5%;
+    background-color: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 60px; /* Form aur Image ke bich gap */
+}
+
+/* --- Left Side: Form Wrapper --- */
+.contact-form-wrapper {
+    flex: 1; /* 50% width */
+}
+
+.contact-subtitle {
+    color: var(--neon-glow);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.contact-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 15px;
+    background: linear-gradient(to right, #fff, var(--primary-green));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.contact-desc {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 30px;
+    font-size: 1rem;
+}
+
+/* --- Glass Form Styling --- */
+.glass-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-row {
+    display: flex;
+    gap: 20px; /* Name aur Email ke bich gap */
+}
+
+.input-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* INPUT FIELDS styling (The Real Magic) */
+.glass-form input, 
+.glass-form select, 
+.glass-form textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05); /* Very transparent */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 15px;
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+/* Placeholder color fix */
+.glass-form ::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Dropdown arrow color fix */
+.glass-form select {
+    color: rgba(255, 255, 255, 0.8);
+}
+.glass-form select option {
+    background: var(--bg-dark); /* Dropdown open hone pe dark background */
+    color: white;
+}
+
+/* Focus Effect: Neon Glow Border */
+.glass-form input:focus, 
+.glass-form select:focus, 
+.glass-form textarea:focus {
+    border-color: var(--primary-green);
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.4);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* --- Submit Button --- */
+.submit-btn {
+    margin-top: 10px;
+    padding: 14px 30px;
+    background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Text aur Icon ke bich gap */
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.6);
+}
+
+/* --- Right Side: Image --- */
+.contact-image {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-image img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 20px;
+    position: relative;
+    z-index: 2;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Image ko thoda 3D tilt dene ke liye (Optional) */
+    transform: perspective(1000px) rotateY(-10deg);
+    transition: 0.5s ease;
+    box-shadow: -20px 20px 50px rgba(0,0,0,0.5);
+}
+
+.contact-image:hover img {
+    transform: perspective(1000px) rotateY(0deg); /* Hover pe sidha ho jayega */
+}
+
+/* Background Glow behind Image */
+.contact-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(circle, var(--primary-blue), transparent 70%);
+    opacity: 0.4;
+    filter: blur(80px);
+    z-index: 1;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .contact-container {
+        flex-direction: column-reverse; /* Mobile pe Image upar, Form niche */
+        gap: 40px;
+    }
+    
+    .input-row {
+        flex-direction: column; /* Inputs ek ke niche ek */
+        gap: 20px;
+    }
+    
+    .contact-image img {
+        transform: none; /* Mobile pe 3D effect hata diya */
+        max-width: 100%;
+    }
+    
+    .submit-btn {
+        width: 100%; /* Full width button on mobile */
+        justify-content: center;
+    }
+}
