@@ -135,18 +135,17 @@ header {
 }
 
 /* --- Home Section Container --- */
+/* --- Home Section Container --- */
 .home {
     width: 100%;
-    min-height: 100vh; /* Poori screen cover karega */
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: transparent;
+    background-color: transparent; /* Piche ka body gradient dikhega */
     position: relative;
-    overflow: hidden; /* Taaki bada text screen ke bahar na jaye */
-    
-    /* Background me thoda glow effect */
-    background-image: radial-gradient(circle at 50% 50%, #00ff8817 0%, transparent 50%);
+    overflow: hidden;
+    padding-top: 80px; /* Navbar ke liye space */
 }
 
 .home-wrap {
@@ -154,152 +153,156 @@ header {
     text-align: center;
     z-index: 10;
     padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* --- 1. The Background Outline Text (Stroke Effect) --- */
-.h-bg-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Perfect Center */
+/* --- 1. The Main Text (DigiXcale) --- */
+.h-main-text {
+    position: relative;
+    z-index: 2;
     
-    font-size: 10rem; /* Bohot bada size */
+    /* Font Size Bada kiya */
+    font-size: 7rem; 
     font-weight: 900;
     text-transform: uppercase;
     line-height: 1;
-    white-space: nowrap; /* Text tootna nahi chahiye */
-    z-index: -1; /* Main content ke piche */
+    margin-bottom: 25px;
+    letter-spacing: -2px; /* Thoda tight spacing modern lagta hai */
     
-    /* THE STROKE MAGIC ✨ */
-    color: transparent; /* Andar se khali */
-    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.1); /* Patli outline */
-    
-    /* Thoda sa neon glow outline pe */
-    filter: drop-shadow(0 0 10px rgba(0, 247, 255, 0.3));
-    user-select: none; /* User isse select na kar paye */
-}
-
-/* --- 2. The Main Foreground Text (Solid Gradient) --- */
-.h-main-text {
-    font-size: 6rem; /* Background se thoda chota */
-    font-weight: 800;
-    text-transform: uppercase;
-    line-height: 1.1;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
-    /* Gradient Text Color */
-    background: linear-gradient(to right, #fff, var(--primary-blue), var(--primary-green));
+    /* Gradient Color */
+    background: linear-gradient(180deg, #ffffff 0%, var(--primary-green) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    z-index: 1;
-    /* Neon Glow Shadow */
-    filter: drop-shadow(0 0 2px var(--neon-glow));
     
-    animation: floatText 3s ease-in-out infinite alternate; /* Thoda hawa me teirega */
+    /* Neon Glow Shadow */
+    filter: drop-shadow(0 0 30px rgba(76, 175, 80, 0.4));
+    
+    /* Animation */
+    animation: floatText 4s ease-in-out infinite alternate;
 }
 
+/* --- 2. The Background Stroke Text (Pseudo Element) --- */
 .h-main-text::before {
-    content: attr(data-text); /* HTML se text uthayega */
+    content: attr(data-text);
     position: absolute;
-    
-    /* Isse ye bilkul center me aa jayega main text ke */
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(1.5); /* 1.5x bada hoga piche */
     
-    z-index: -1; /* Main text ke piche */
-    font-size: 12rem; /* Background text bada hona chahiye */
+    z-index: -1;
+    font-size: 7rem; 
     font-weight: 900;
     text-transform: uppercase;
-    white-space: nowrap; /* Tootna nahi chahiye */
+    white-space: nowrap;
     
-    /* STROKE EFFECT */
+    /* STROKE EFFECT (Sirf Outline) */
     color: transparent;
-    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.08); /* Thoda aur subtle kiya */
-    filter: drop-shadow(0 0 10px rgba(0, 247, 255, 0.2));
-    pointer-events: none; /* Ispe click na ho */
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05); /* Bohot subtle outline */
+    letter-spacing: 10px; /* Piche wala text thoda faila hua */
+    pointer-events: none;
 }
 
 /* --- Paragraph --- */
 .h-para {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.8);
     font-size: 1.1rem;
     max-width: 600px;
     margin: 0 auto 40px auto;
     line-height: 1.6;
+    font-weight: 300;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Readability ke liye shadow */
 }
 
 /* --- Buttons Container --- */
 .h-btns {
     display: flex;
-    gap: 20px;
+    gap: 25px;
     justify-content: center;
 }
 
 /* Common Button Style */
 .h-btn {
-    padding: 12px 35px;
+    padding: 14px 40px;
     font-size: 1rem;
     font-weight: 600;
     border-radius: 50px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth Bounce */
     text-transform: uppercase;
     letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Primary Button (Start Scaling) - Filled */
+/* Primary Button (Start Scaling) - Neon Green Gradient */
 .H-btn-primary {
-    background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));
+    background: linear-gradient(90deg, var(--primary-blue) 0%, var(--primary-green) 100%);
     border: none;
     color: white;
-    box-shadow: 0 0 8px var(--neon-glow);
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.4);
+    z-index: 1;
+}
+
+.H-btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(90deg, var(--primary-green), var(--primary-blue)); /* Reverse Gradient on Hover */
+    z-index: -1;
+    transition: opacity 0.3s linear;
+    opacity: 0;
+}
+
+.H-btn-primary:hover::before {
+    opacity: 1;
 }
 
 .H-btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 20px var(--neon-glow);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(76, 175, 80, 0.6);
 }
 
-/* Secondary Button (Our Services) - Outline */
+/* Secondary Button (Our Services) - Glass Style */
 .H-btn-secondary {
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     color: white;
+    backdrop-filter: blur(5px);
 }
 
 .H-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
     border-color: var(--neon-glow);
     color: var(--neon-glow);
-    box-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+    transform: translateY(-5px);
 }
 
 /* --- Animation Keyframes --- */
 @keyframes floatText {
-    from { transform: translateY(0); }
-    to { transform: translateY(-10px); }
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-15px); }
 }
 
-/* --- Responsive Media Queries (Mobile Fixes) --- */
+/* --- Responsive (Mobile Fixes) --- */
 @media (max-width: 768px) {
-    .h-bg-text {
-        font-size: 5rem; /* Mobile pe chota karo varna screen fat jayegi */
-        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
-    }
-    
     .h-main-text {
-        font-size: 3rem;
+        font-size: 3.5rem; /* Mobile pe size kam */
+        line-height: 1.1;
     }
     
-    .h-para {
-        font-size: 0.9rem;
-        padding: 0 15px;
+    .h-main-text::before {
+        font-size: 3.5rem;
+        transform: translate(-50%, -50%) scale(1.3);
     }
     
     .h-btns {
-        flex-direction: column; /* Buttons ek ke niche ek */
-        gap: 15px;
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
     }
     
     .h-btn {
@@ -611,6 +614,200 @@ header {
     }
 }
 
+.why-us {
+    padding: 100px 5%;
+    background-color: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+}
+
+.why-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* Background Stroke Text */
+.bg-stroke-text {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 15rem;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.03);
+    z-index: -1;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.why-header { text-align: center; margin-bottom: 50px; }
+.sub-tag { color: var(--neon-glow); text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; margin-bottom: 10px; }
+.main-title { font-size: 3.5rem; color: white; line-height: 1.1; font-weight: 700; }
+.highlight { 
+    background: linear-gradient(to right, var(--primary-blue), var(--primary-green));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* =================================================================
+   MAIN GRID LAYOUT ENGINE
+   Layout: 
+   [ BOX 1 (Large) ]  [ BOX 2 ] [ BOX 3 ]
+   [ BOX 1 (Large) ]  [ BOX 4 (Wide)    ]
+   ================================================================= */
+.bento-grid {
+    display: grid;
+    /* 3 Columns: 1st is large (1.5fr), 2nd and 3rd are equal (1fr 1fr) */
+    grid-template-columns: 1.5fr 1fr 1fr;
+    /* 2 Rows */
+    grid-template-rows: 1fr 0.8fr; 
+    gap: 25px;
+    /* Mapping HTML classes to Areas */
+    grid-template-areas:
+        "box1 box2 box3"
+        "box1 box4 box4";
+}
+
+/* --- BOX 1: LEFT SIDE LARGE (Image + Text Overlay) --- */
+.bento-box.box-1 {
+    grid-area: box1;
+    /* Background Image Yahan Laga Di */
+    background: url('../Media/images/handshake.jpg') center/cover no-repeat;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Dark Overlay on Image taaki text dikhe */
+.bento-box.box-1::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.9)); 
+    z-index: 1;
+}
+
+/* Content inside Box 1 */
+.box-content { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+
+/* "Others Deliver..." Label */
+.box-content h3 {
+    font-size: 0.9rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 1px;
+    background: rgba(255,255,255,0.1); display: inline-block; padding: 8px 15px;
+    border-radius: 30px; border: 1px solid rgba(255,255,255,0.2); width: fit-content;
+}
+
+/* The Big BUT */
+.big-but {
+    font-size: 8rem; font-weight: 900; font-style: italic; line-height: 1; color: transparent;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.5); opacity: 0.8;
+    margin: 20px 0;
+}
+
+/* Missing Piece Text */
+.missing-text {
+    font-size: 1.5rem; color: white; font-weight: 500; line-height: 1.2;
+}
+
+.neon-highlight {
+    font-size: 4rem; font-weight: 800; text-transform: uppercase; line-height: 1; display: block;
+    background: linear-gradient(90deg, #fff, var(--primary-green)); 
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.5));
+}
+.neon-highlight.one { margin-top: 10px; }
+.neon-highlight.two { margin-left: 0; display: block; color: var(--neon-glow); }
+
+
+/* --- BOX 2: TOP MIDDLE (Pain Dialogue) --- */
+.bento-box.box-2 {
+    grid-area: box2;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 25px;
+    display: flex; align-items: center; justify-content: center;
+}
+
+.pain-dialogue {
+    font-family: 'Courier New', monospace; font-size: 1.1rem; line-height: 1.5; color: rgba(255, 255, 255, 0.9);
+    font-weight: 600; text-align: center;
+}
+.pain-text { color: #ff4d4d; font-weight: 800; font-size: 1.3rem; }
+.own-text { text-decoration: underline; text-decoration-color: var(--primary-green); font-weight: 800; color: white; }
+.large-quote { font-size: 2.5rem; color: var(--primary-blue); vertical-align: sub; line-height: 0; }
+
+
+/* --- BOX 3: TOP RIGHT (Comparison) --- */
+.bento-box.box-3 {
+    grid-area: box3;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex; flex-direction: column; justify-content: space-between; gap: 15px;
+}
+
+.expert-top, .expert-bottom {
+    background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 15px; text-align: center;
+}
+.box-header { font-size: 0.75rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+.expert-top p, .expert-bottom p { font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.4; margin: 0; }
+.white { color: white; font-weight: 700; }
+.green { color: var(--primary-green); font-weight: 700; }
+
+.plus-connector { display: flex; justify-content: center; }
+.plus-connector i { color: var(--neon-glow); font-size: 1.2rem; background: rgba(0, 255, 136, 0.1); padding: 5px; border-radius: 50%; }
+
+
+/* --- BOX 4: BOTTOM RIGHT (CTA) --- */
+.bento-box.box-4 {
+    grid-area: box4;
+    background: linear-gradient(90deg, rgba(0,51,102,0.2), rgba(76,175,80,0.1));
+    border-radius: 20px; padding: 25px 40px; border: 1px solid rgba(255,255,255,0.1);
+    display: flex; flex-direction: row; justify-content: space-between; align-items: center;
+}
+
+.box-4 .top { display: flex; align-items: center; gap: 15px; border-right: 1px solid rgba(255,255,255,0.1); padding-right: 20px; }
+.large-10x { font-size: 3.5rem; font-weight: 900; color: var(--primary-green); line-height: 1; }
+.neon-gradient { font-size: 1rem; color: white; font-weight: 700; text-align: left; }
+
+.box-4 .bottom { flex: 1; display: flex; align-items: center; justify-content: space-between; padding-left: 20px; gap: 20px; }
+.quote-top { font-size: 1rem; color: white; font-weight: 500; font-style: italic; margin: 0; flex: 1; }
+.Business { color: var(--primary-blue); } .chemistry { color: var(--primary-green); }
+.maybe { display: none; }
+
+.bento-btn {
+    padding: 12px 30px; background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+    border: none; color: white; border-radius: 50px; font-weight: 700; cursor: pointer;
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.3); transition: 0.3s; white-space: nowrap;
+}
+.bento-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(76, 175, 80, 0.6); }
+
+
+/* --- Responsive Media Queries --- */
+@media (max-width: 992px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-template-areas: 
+            "box1"
+            "box2"
+            "box3"
+            "box4";
+        gap: 30px;
+    }
+    .bento-box.box-1 { min-height: 400px; }
+    .box-4 { flex-direction: column; text-align: center; }
+    .box-4 .top { border-right: none; padding-right: 0; margin-bottom: 20px; }
+    .box-4 .bottom { flex-direction: column; padding-left: 0; }
+}
 /* --- Footer Styling --- */
 .footer {
     background-color: transparent;
