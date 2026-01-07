@@ -34,8 +34,8 @@ header {
     top: 20px; /* Thoda hawa me float karega */
     left: 50%;
     transform: translateX(-50%);
-    width: 90%; /* Full width nahi, thoda gap side me */
-    max-width: 1200px;
+    width: 100%;
+    padding: 0px 80px;
     z-index: 1000;
 }
 
@@ -123,29 +123,65 @@ header {
 }
 
 /* --- Responsive (Mobile ke liye basic fix) --- */
-@media (max-width: 768px) {
-    header {
-        width: 100%;
-        top: 0;
-        border-radius: 0; /* Mobile pe full width glass */
-    }
-    .nav-list {
-        display: none; /* Mobile menu baad me JS se banana padega */
-    }
-}
+
 
 /* --- Home Section Container --- */
 /* --- Home Section Container --- */
+
 .home {
     width: 100%;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: transparent; /* Piche ka body gradient dikhega */
+    background-color: #050510; /* Piche ka body gradient dikhega */
     position: relative;
     overflow: hidden;
     padding-top: 80px; /* Navbar ke liye space */
+}
+
+.floating-shapes {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    overflow: hidden;
+    z-index: 1; /* Content ke piche */
+    pointer-events: none;
+}
+
+.shape {
+    position: absolute;
+    filter: blur(80px);
+    opacity: 0.4;
+    animation: floatAnimation 20s infinite linear;
+}
+
+.shape-1 {
+    top: -10%; left: -10%;
+    width: 300px; height: 300px;
+    background: var(--primary-blue);
+    animation-duration: 25s;
+}
+
+.shape-2 {
+    bottom: 20%; right: -5%;
+    width: 400px; height: 400px;
+    background: var(--primary-green);
+    animation-duration: 30s;
+    animation-direction: reverse;
+}
+
+.shape-3 {
+    top: 40%; left: 40%;
+    width: 200px; height: 200px;
+    background: var(--neon-glow);
+    animation-duration: 20s;
+    opacity: 0.2;
+}
+
+@keyframes floatAnimation {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(50px, 50px) rotate(180deg); }
+    100% { transform: translate(0, 0) rotate(360deg); }
 }
 
 .home-wrap {
@@ -313,14 +349,13 @@ header {
 /* --- About Section Styling --- */
 .about {
     width: 100%;
-    padding: 100px 5%; /* Top-Bottom padding taaki saans lene ki jagah ho */
+    padding: 80px; /* Top-Bottom padding taaki saans lene ki jagah ho */
     background-color: var(--bg-dark);
     position: relative;
     overflow: hidden;
 }
 
 .about-wrap {
-    max-width: 1200px;
     margin: 0 auto;
     display: flex;
     align-items: center; /* Vertically center */
@@ -407,7 +442,7 @@ header {
 .about-head {
     font-size: 2.5rem;
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.1;
     margin-bottom: 15px;
     
     /* Gradient Text Style */
@@ -419,11 +454,11 @@ header {
 
 /* Sub-Heading */
 .about-intro {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.9);
     margin-bottom: 20px;
-    border-left: 3px solid var(--primary-blue); /* Left side blue line style */
+    border-left: 3px solid var(--neon-glow); /* Left side blue line style */
     padding-left: 15px;
 }
 
@@ -433,6 +468,76 @@ header {
     color: rgba(255, 255, 255, 0.7);
     line-height: 1.6;
     margin-bottom: 30px;
+}
+
+/* --- About Stats Section (New Addition) --- */
+.about-stats {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    /* Glassmorphism Container */
+    margin: 0 0 30px 0; /* Upar niche gap */
+    backdrop-filter: blur(10px);
+    
+    /* Slight Glow */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: 500px; /* Zyada failne se rokne ke liye */
+}
+
+.stat-item {
+    text-align: center;
+}
+
+/* Big Neon Numbers */
+.stat-item h3 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 5px;
+    
+    /* Gradient Text */
+    background: linear-gradient(to right, #fff, var(--primary-green));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    
+    /* Glow */
+    filter: drop-shadow(0 0 10px rgba(76, 175, 80, 0.4));
+}
+
+/* Subtext */
+.stat-item p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0; /* Reset default p margin */
+}
+
+/* Vertical Divider Line */
+.stat-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* --- Mobile Responsive Fix --- */
+@media (max-width: 600px) {
+    .about-stats {
+        flex-direction: row; /* Mobile pe bhi row hi rakho, clean lagta hai */
+        padding: 15px;
+        gap: 10px;
+    }
+    
+    .stat-item h3 {
+        font-size: 1.8rem; /* Mobile pe thoda chota */
+    }
+    
+    .stat-item p {
+        font-size: 0.7rem;
+    }
 }
 
 /* CTA Button styling (Based on your theme) */
@@ -464,37 +569,7 @@ header {
 }
 
 /* --- Responsive (Mobile) --- */
-@media (max-width: 900px) {
-    .about-wrap {
-        flex-direction: column; /* Mobile pe ek ke niche ek */
-        text-align: center; /* Center align text acha lagta hai mobile pe */
-    }
 
-    .about-left {
-        width: 100%;
-        margin-bottom: 30px;
-    }
-    
-    .about-head {
-        font-size: 2rem;
-    }
-    
-    .about-intro {
-        border-left: none; /* Mobile pe line hata di */
-        border-bottom: 3px solid var(--primary-blue); /* Niche laga di */
-        padding-bottom: 10px;
-        padding-left: 0;
-        display: inline-block;
-    }
-
-    .about-title {
-        justify-content: center; /* Center align title */
-    }
-
-    .about-right {
-        align-items: center; /* Button center karne ke liye */
-    }
-}
 
 /* --- Services Section --- */
 .services {
@@ -645,9 +720,12 @@ header {
 .why-header { text-align: center; margin-bottom: 50px; }
 .sub-tag { color: var(--neon-glow); text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; margin-bottom: 10px; }
 .main-title { font-size: 3.5rem; color: white; line-height: 1.1; font-weight: 700; }
-.highlight { 
-    background: linear-gradient(to right, var(--primary-blue), var(--primary-green));
-    -webkit-background-clip: text; background-clip: text; color: transparent;
+.why-highlight { 
+        /* Gradient Text Style */
+    background: linear-gradient(to right, #fff, var(--primary-green));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 /* =================================================================
@@ -693,7 +771,10 @@ header {
 }
 
 /* Content inside Box 1 */
-.box-content { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+.box-content { position: relative; z-index: 2; 
+    height: 100%; display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; }
 
 /* "Others Deliver..." Label */
 .box-content h3 {
@@ -721,7 +802,7 @@ header {
     filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.5));
 }
 .neon-highlight.one { margin-top: 10px; }
-.neon-highlight.two { margin-left: 0; display: block; color: var(--neon-glow); }
+.neon-highlight.two { margin-left: 50px; display: block; color: var(--neon-glow); line-height: 3rem;}
 
 
 /* --- BOX 2: TOP MIDDLE (Pain Dialogue) --- */
@@ -736,11 +817,14 @@ header {
 }
 
 .pain-dialogue {
-    font-family: 'Courier New', monospace; font-size: 1.1rem; line-height: 1.5; color: rgba(255, 255, 255, 0.9);
-    font-weight: 600; text-align: center;
+    font-size: 1.1rem; line-height: 1.5; color: rgba(255, 255, 255, 0.767);
+    font-weight: 500; text-align: center;
 }
 .pain-text { color: #ff4d4d; font-weight: 800; font-size: 1.3rem; }
-.own-text { text-decoration: underline; text-decoration-color: var(--primary-green); font-weight: 800; color: white; }
+.own-text { 
+    text-decoration: underline; 
+    text-decoration-color: var(--primary-green); 
+    font-weight: 700; color: white; }
 .large-quote { font-size: 2.5rem; color: var(--primary-blue); vertical-align: sub; line-height: 0; }
 
 
@@ -774,14 +858,29 @@ header {
     display: flex; flex-direction: row; justify-content: space-between; align-items: center;
 }
 
-.box-4 .top { display: flex; align-items: center; gap: 15px; border-right: 1px solid rgba(255,255,255,0.1); padding-right: 20px; }
-.large-10x { font-size: 3.5rem; font-weight: 900; color: var(--primary-green); line-height: 1; }
+.box-4 .top { 
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    gap: 0px; 
+    border-right: 1px solid rgba(255,255,255,0.1); 
+    padding-right: 20px; }
+.large-10x { 
+    font-size: 3.5rem; font-weight: 900; color: var(--primary-green); line-height: 1; }
 .neon-gradient { font-size: 1rem; color: white; font-weight: 700; text-align: left; }
 
 .box-4 .bottom { flex: 1; display: flex; align-items: center; justify-content: space-between; padding-left: 20px; gap: 20px; }
 .quote-top { font-size: 1rem; color: white; font-weight: 500; font-style: italic; margin: 0; flex: 1; }
 .Business { color: var(--primary-blue); } .chemistry { color: var(--primary-green); }
-.maybe { display: none; }
+
+.bento-CTA{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.maybe { 
+    font-size: 0.9rem; color: rgba(255,255,255,0.7); font-weight: 400; margin: 0; flex: 1;
+ }
 
 .bento-btn {
     padding: 12px 30px; background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
@@ -1011,7 +1110,8 @@ header {
 }
 
 .contact-title {
-    font-size: 2.5rem;
+    font-size: 2.7rem;
+    line-height: 2.7rem;
     font-weight: 700;
     color: white;
     margin-bottom: 15px;
@@ -1174,4 +1274,236 @@ header {
         width: 100%; /* Full width button on mobile */
         justify-content: center;
     }
+}
+
+@media (max-width: 1199px){
+    .about-right{
+        gap: 0;
+    }
+    .about-title{
+        font-size: 0.7;
+    }
+    .about-title:before{
+        width: 6px;
+        height: 6px;
+    }
+    .about-head{
+        font-size: 2rem;
+    }
+    .about-intro{
+        font-size: 1rem;
+        line-height: 1.15rem;
+    }
+    .about-para{
+        font-size: 0.9rem;
+        line-height: 1.1rem;
+    }
+    .about-stats{
+        max-width: 100%;
+    }
+    .stat-item h3{
+        font-size: 2rem;
+    }
+    .stat-item p{
+        font-size: 0.75rem;
+    }
+    .about-right button{
+        padding: 12px 30px;
+        font-size: 0.9rem;
+    }
+.about-wrap {
+
+    gap: 20px; /* Image aur Text ke bich ka gap */
+}
+}
+
+@media (max-width: 992px){
+
+    .about-title{
+        font-size: 0.6;
+    }
+    .about-title:before{
+        width: 6px;
+        height: 6px;
+    }
+    .about-head{
+        font-size: 1.9rem;
+    }
+    .about-intro{
+        font-size: 0.9rem;
+        line-height: 1.1rem;
+    }
+    .about-para{
+        font-size: 0.8rem;
+        line-height: 1rem;
+    }
+    .about-stats{
+        max-width: 100%;
+    }
+    .stat-item h3{
+        font-size: 1.9rem;
+    }
+    .stat-item p{
+        font-size: 0.70rem;
+    }
+    .about-right button{
+        padding: 12px 30px;
+        font-size: 0.8rem;
+    }
+    .about{
+        padding: 60px 60px;
+    }
+.about-wrap {
+
+    gap: 20px; /* Image aur Text ke bich ka gap */
+}
+}
+
+@media (max-width: 768px) {
+    header {
+    position: fixed;
+    top: 20px; /* Thoda hawa me float karega */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    padding: 0px 60px;
+    z-index: 1000;
+    }
+    .nav-list {
+        display: none; /* Mobile menu baad me JS se banana padega */
+    }
+
+    .about{
+        padding: 60px 60px;
+    }
+    .about-wrap{
+        flex-direction: column;
+    }
+    .about-right{
+        padding-top: 30px;
+    }
+    .about-title{
+        font-size: 0.7rem;
+    }
+    .about-title:before{
+        width: 6px;
+        height: 6px;
+    }
+    .about-head{
+        font-size: 1.8rem;
+    }
+    .about-intro{
+        font-size: 1.1rem;
+        line-height: 1.3rem;
+    }
+    .about-para{
+        font-size: 0.95rem;
+        line-height: 1.2rem;
+    }
+
+    .stat-item h3{
+        font-size: 2.1rem;
+    }
+    .stat-item p{
+        font-size: 0.9rem;
+    }
+    .about-right button{
+        padding: 15px 40px;
+        font-size: 0.9rem;
+    }
+
+}
+
+@media (max-width: 480px) {
+    header {
+    position: fixed;
+    top: 20px; /* Thoda hawa me float karega */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    padding: 0px 20px;
+    z-index: 1000;
+    }
+
+    .head-con {
+
+    padding: 8px 16px;
+    
+}
+
+/* --- Logo Styling --- */
+.logo img {
+    height: 40px; /* Height adjust kar lena logo ke hisaab se */
+
+    filter: drop-shadow(0 0 0px var(--neon-glow)); /* Thoda glow logo pe */
+}
+
+.head-btn {
+    padding: 8px 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: white;
+    background: transparent;
+    border: 2px solid var(--primary-green); /* Green Border */
+    border-radius: 30px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.2);
+}
+
+/* Button Hover Effect - Fill Background */
+.head-btn:hover {
+    background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));
+    border-color: transparent;
+    box-shadow: 0 0 20px var(--primary-green); /* Neon Glow badh jayega */
+    transform: translateY(-2px);
+}
+
+    .about{
+        padding: 60px 20px;
+    }
+    .about-wrap{
+        flex-direction: column;
+    }
+    .about-right{
+        padding-top: 30px;
+    }
+    .about-title{
+        font-size: 0.65rem;
+    }
+    .about-title:before{
+        width: 5px;
+        height: 5px;
+    }
+    .about-head{
+        font-size: 1.6rem;
+    }
+    .about-intro{
+        font-size: 0.9rem;
+        line-height: 1.2rem;
+        border-left: 2px solid var(--neon-glow);
+        padding-left: 10px;
+    }
+    .about-para{
+        font-size: 0.80rem;
+        line-height: 1.1rem;
+        margin-bottom: 10px;
+    }
+
+    .about-stats{
+        margin-bottom: 10px;
+    }
+    .stat-item h3{
+        font-size: 1.9rem;
+    }
+    .stat-item p{
+        font-size: 0.8rem;
+    }
+    .about-right button{
+        padding: 15px 40px;
+        font-size: 0.9rem;
+    }
+
 }
