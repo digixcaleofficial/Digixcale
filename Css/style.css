@@ -524,21 +524,7 @@ header {
 }
 
 /* --- Mobile Responsive Fix --- */
-@media (max-width: 600px) {
-    .about-stats {
-        flex-direction: row; /* Mobile pe bhi row hi rakho, clean lagta hai */
-        padding: 15px;
-        gap: 10px;
-    }
-    
-    .stat-item h3 {
-        font-size: 1.8rem; /* Mobile pe thoda chota */
-    }
-    
-    .stat-item p {
-        font-size: 0.7rem;
-    }
-}
+
 
 /* CTA Button styling (Based on your theme) */
 .about-right button {
@@ -573,14 +559,10 @@ header {
 
 /* --- Services Section --- */
 .services {
-    padding: 100px 5%;
+    padding: 80px;
+    width: 100%;
     background-color: var(--bg-dark);
     position: relative;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
 /* --- Section Header --- */
@@ -612,7 +594,7 @@ header {
 .service-grid {
     display: grid;
     /* Auto-fit magic: Mobile pe 1, Tablet pe 2, Desktop pe 3 columns */
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
 }
 
@@ -680,25 +662,16 @@ header {
 }
 
 /* --- Responsive --- */
-@media (max-width: 768px) {
-    .section-title {
-        font-size: 2rem;
-    }
-    .services {
-        padding: 60px 5%;
-    }
-}
+
 
 .why-us {
-    padding: 100px 5%;
+    padding: 80px;
     background-color: var(--bg-dark);
     position: relative;
     overflow: hidden;
 }
 
 .why-container {
-    max-width: 1200px;
-    margin: 0 auto;
     position: relative;
     z-index: 2;
 }
@@ -890,23 +863,7 @@ header {
 .bento-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(76, 175, 80, 0.6); }
 
 
-/* --- Responsive Media Queries --- */
-@media (max-width: 992px) {
-    .bento-grid {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-        grid-template-areas: 
-            "box1"
-            "box2"
-            "box3"
-            "box4";
-        gap: 30px;
-    }
-    .bento-box.box-1 { min-height: 400px; }
-    .box-4 { flex-direction: column; text-align: center; }
-    .box-4 .top { border-right: none; padding-right: 0; margin-bottom: 20px; }
-    .box-4 .bottom { flex-direction: column; padding-left: 0; }
-}
+
 /* --- Footer Styling --- */
 .footer {
     background-color: transparent;
@@ -1070,15 +1027,6 @@ header {
 }
 
 /* --- Responsive (Mobile) --- */
-@media (max-width: 768px) {
-    .footer-row {
-        flex-direction: column;
-        gap: 30px;
-    }
-    .footer-col {
-        width: 100%;
-    }
-}
 
 /* --- Contact Section --- */
 .contact {
@@ -1254,27 +1202,7 @@ header {
 }
 
 /* --- Responsive --- */
-@media (max-width: 768px) {
-    .contact-container {
-        flex-direction: column-reverse; /* Mobile pe Image upar, Form niche */
-        gap: 40px;
-    }
-    
-    .input-row {
-        flex-direction: column; /* Inputs ek ke niche ek */
-        gap: 20px;
-    }
-    
-    .contact-image img {
-        transform: none; /* Mobile pe 3D effect hata diya */
-        max-width: 100%;
-    }
-    
-    .submit-btn {
-        width: 100%; /* Full width button on mobile */
-        justify-content: center;
-    }
-}
+
 
 @media (max-width: 1199px){
     .about-right{
@@ -1315,7 +1243,77 @@ header {
 
     gap: 20px; /* Image aur Text ke bich ka gap */
 }
+
+    .service-card h3{
+        font-size: 1.3rem;
+        line-height: 1.4rem;
+    }
+
+    .service-card p{
+        font-size: 0.8rem;
+        line-height: 1.3;
+    }
+
+    .service-grid{
+        gap: 20px;
+    }
 }
+
+@media (max-width: 1024px){
+    .bento-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 0.5fr 0.2fr; 
+    gap: 25px;
+    grid-template-areas:
+        "box1 box1"
+        "box2 box3"
+        "box4 box4";
+}
+  
+.bento-box.box-2 {
+    grid-area: box2;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 25px;
+    display: flex; 
+    align-items: center; 
+    height: fit-content;
+    height: 300px;
+}
+
+.bento-box.box-3 {
+    grid-area: box3;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-around; 
+    align-self: center;
+    gap: 0px;
+    height: 300px;
+}
+
+.expert-top p, .expert-bottom p 
+{ 
+    font-size: 1rem; 
+    color: rgba(255,255,255,0.8); 
+    line-height: 1.4; 
+    margin: 0; }
+
+
+
+.quote-top{
+    font-size: 1.2rem;
+}
+}
+
+
+
 
 @media (max-width: 992px){
 
@@ -1357,7 +1355,26 @@ header {
 
     gap: 20px; /* Image aur Text ke bich ka gap */
 }
+    .service-card h3{
+        font-size: 1.3rem;
+        line-height: 1.4rem;
+    }
+
+    .service-card p{
+        font-size: 0.8rem;
+        line-height: 1.3;
+    }
+
+    .service-grid{
+        gap: 20px;
+    }
+
+    .why-us{
+        padding: 60px;
+    }
 }
+
+
 
 @media (max-width: 768px) {
     header {
@@ -1411,6 +1428,83 @@ header {
         padding: 15px 40px;
         font-size: 0.9rem;
     }
+
+
+    .services{
+        padding: 60px 40px;
+    }
+    .service-grid {
+    display: grid;
+    /* Auto-fit magic: Mobile pe 1, Tablet pe 2, Desktop pe 3 columns */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+    .icon-box{
+        height: 50px;
+        width: 50px;
+        font-size: 1.5rem;
+    }
+    .service-card h3{
+        font-size: 1.3rem;
+        line-height: 1.4rem;
+    }
+
+    .service-card p{
+        font-size: 0.8rem;
+        line-height: 1.3;
+    }
+
+    .service-grid{
+        gap: 20px;
+    }
+
+
+
+        .contact-container {
+        flex-direction: column-reverse; /* Mobile pe Image upar, Form niche */
+        gap: 40px;
+    }
+    
+    .input-row {
+        flex-direction: column; /* Inputs ek ke niche ek */
+        gap: 20px;
+    }
+    
+    .contact-image img {
+        transform: none; /* Mobile pe 3D effect hata diya */
+        max-width: 100%;
+    }
+    
+    .submit-btn {
+        width: 100%; /* Full width button on mobile */
+        justify-content: center;
+    }
+
+        .footer-row {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .footer-col {
+        width: 100%;
+    }
+
+        .why-us{
+        padding: 60px 40px;
+    }
+
+    .expert-top p, .expert-bottom p 
+{ 
+    font-size: 0.85rem; 
+    color: rgba(255,255,255,0.8); 
+    line-height: 1.4; 
+    margin: 0; }
+
+
+
+.quote-top{
+    font-size: 1rem;
+}
 
 }
 
@@ -1489,21 +1583,123 @@ header {
     .about-para{
         font-size: 0.80rem;
         line-height: 1.1rem;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
 
     .about-stats{
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
     .stat-item h3{
-        font-size: 1.9rem;
+        font-size: 1.8rem;
     }
     .stat-item p{
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
     .about-right button{
-        padding: 15px 40px;
-        font-size: 0.9rem;
+        padding: 12px 18px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .services{
+        padding: 60px 20px
+    }
+
+    .section-header{
+        margin-bottom: 40px;
+    }
+    .section-subtitle{
+        font-size: 0.7rem;
+        line-height: 0.8rem;
+    }
+    .section-title{
+        font-size: 1.5rem;
+        line-height: 1.2;
+    }
+
+    .service-grid {
+    display: grid;
+    /* Auto-fit magic: Mobile pe 1, Tablet pe 2, Desktop pe 3 columns */
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+}
+
+    .icon-box{
+        height: 50px;
+        width: 50px;
+        font-size: 1.5rem;
+    }
+    .service-card{
+        padding: 30px 20px;
+    }
+    .service-card h3{
+        font-size: 1.2rem;
+        line-height: 1.4rem;
+    }
+
+    .service-card p{
+        font-size: 0.8rem;
+        line-height: 1.3;
+    }
+
+    .service-grid{
+        gap: 20px;
+    }
+
+    
+        .why-us{
+        padding: 60px 20px;
     }
 
 }
+
+@media (max-width: 480px){
+        .bento-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+  
+.bento-box.box-2 {
+    grid-area: box2;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 25px;
+    display: flex; 
+    align-items: center; 
+    height: fit-content;
+    height: 300px;
+}
+
+.bento-box.box-3 {
+    grid-area: box3;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-around; 
+    align-self: center;
+    gap: 0px;
+    height: 300px;
+}
+
+.expert-top p, .expert-bottom p 
+{ 
+    font-size: 1rem; 
+    color: rgba(255,255,255,0.8); 
+    line-height: 1.4; 
+    margin: 0; }
+
+
+
+.quote-top{
+    font-size: 1.2rem;
+}
+
+
+}
+
