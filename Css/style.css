@@ -100,6 +100,7 @@ header {
 
 /* --- CTA Button (Start Scaling) --- */
 .head-btn {
+    text-decoration: none;
     padding: 10px 25px;
     font-size: 1rem;
     font-weight: 600;
@@ -1030,7 +1031,7 @@ header {
 
 /* --- Contact Section --- */
 .contact {
-    padding: 100px 5%;
+    padding: 80px;
     background-color: var(--bg-dark);
     position: relative;
     overflow: hidden;
@@ -1268,6 +1269,10 @@ header {
     line-height: 1.1; 
     font-weight: 700; }
 
+    .contact {
+        padding: 60px;
+    }
+
 }
 
 @media (max-width: 1024px){
@@ -1280,6 +1285,8 @@ header {
         "box1 box1"
         "box2 box3"
         "box4 box4";
+
+
 }
   
 .bento-box.box-2 {
@@ -1536,6 +1543,10 @@ header {
     font-size: 3rem; 
     line-height: 1.1; 
     font-weight: 700; }
+
+    .contact {
+        padding: 60px 40px;
+    }
 }
 
 
@@ -1559,7 +1570,7 @@ header {
 
 /* --- Logo Styling --- */
 .logo img {
-    height: 40px; /* Height adjust kar lena logo ke hisaab se */
+    height: 50px; /* Height adjust kar lena logo ke hisaab se */
 
     filter: drop-shadow(0 0 0px var(--neon-glow)); /* Thoda glow logo pe */
 }
@@ -1692,7 +1703,11 @@ header {
         flex-direction: column;
         gap: 20px;
     }
-    
+
+    .contact {
+        padding: 40px 20px;
+    }
+
     .contact-image img {
         transform: none; /* Mobile pe 3D effect hata diya */
         max-width: 100%;
@@ -1842,4 +1857,119 @@ header {
 }
 
 }
+
+
+/* --- Page Header Section --- */
+.page-header {
+    width: 100%;
+    height: fit-content;
+    background-color: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+    z-index: 100;
+    padding: 120px 80px 0px 80px;
+     /* Navbar ke liye space */
+}
+
+/* Background Abstract Glow */
+.header-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(0, 51, 102, 0.4) 0%, rgba(76, 175, 80, 0.2) 50%, transparent 70%);
+    filter: blur(80px);
+    z-index: 0;
+    animation: glowPulse 5s infinite alternate;
+}
+
+@keyframes glowPulse {
+    0% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.8); }
+    100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+/* --- Page Title (Layered Text Effect) --- */
+.page-title {
+    font-size: 5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: white;
+    position: relative;
+    top: 45px;
+    z-index: 2;
+    letter-spacing: 2px;
+     /* Thoda right shift kar diya */
+    /* Text Shadow Glow */
+    text-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+    background: linear-gradient(to right, #fff, var(--primary-green));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Background Stroke Text (Piche wala text) */
+.page-title::before {
+    content: attr(data-text); /* HTML attribute se text uthayega */
+    position: absolute;
+    transform: translateX(40px) translatey(-40px) scale(1.2); /* Thoda bada */
+
+    font-size: 5rem;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1); /* Sirf outline */
+    z-index: -1;
+    white-space: nowrap;
+    opacity: 0.5;
+    letter-spacing: 5px;
+}
+
+/* --- Responsive (Mobile) --- */
+@media (max-width: 1199px) {
+    .page-header {
+        padding: 180px 60px 0px 60px;
+    }
+    .page-title {
+        font-size: 4rem;
+        top: 35px;
+    }
+    .page-title::before {
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-header {
+        padding: 180px 40px 0px 40px;
+    }
+    .page-title {
+        font-size: 2.6rem;
+        top: 22px;
+    }
+    .page-title::before {
+        font-size: 2.6rem;
+        transform: translateX(24px) translatey(-25px) scale(1.2); /* Thoda bada */
+ 
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header {
+        padding: 135px 20px 0px 20px;
+    }
+    .page-title {
+        font-size: 2.2rem;
+        top: 20px;
+    }
+    .page-title::before {
+        font-size: 2.2rem;
+        transform: translateX(20px) translatey(-20px) scale(1.2); /* Thoda bada */
+
+    }
+}
+
+
+
+
 

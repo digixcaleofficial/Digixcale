@@ -17,3 +17,5 @@ async function loadComponents() {
         console.error("Error loading components:", error);
     }
 }
+
+document.addEventListener("DOMContentLoaded", loadComponents);
