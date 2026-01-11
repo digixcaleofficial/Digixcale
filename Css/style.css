@@ -262,6 +262,7 @@ header {
 
 /* Common Button Style */
 .h-btn {
+    text-decoration: none;
     padding: 14px 40px;
     font-size: 1rem;
     font-weight: 600;
@@ -528,7 +529,8 @@ header {
 
 
 /* CTA Button styling (Based on your theme) */
-.about-right button {
+.about-right a {
+    text-decoration: none;
     padding: 14px 35px;
     font-size: 1rem;
     font-weight: 600;
@@ -544,7 +546,7 @@ header {
     box-shadow: 0 0 15px rgba(76, 175, 80, 0.3);
 }
 
-.about-right button:hover {
+.about-right a:hover {
     transform: translateY(-3px);
     box-shadow: 0 0 25px rgba(76, 175, 80, 0.6);
 }
@@ -857,6 +859,7 @@ header {
  }
 
 .bento-btn {
+    text-decoration: none;
     padding: 12px 30px; background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
     border: none; color: white; border-radius: 50px; font-weight: 700; cursor: pointer;
     box-shadow: 0 0 15px rgba(76, 175, 80, 0.3); transition: 0.3s; white-space: nowrap;
