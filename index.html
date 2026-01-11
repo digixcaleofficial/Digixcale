@@ -13,6 +13,7 @@
 
 <body>
     <div class="content">
+        <div id="header-placeholder"></div>
         <header>
             <div class="head-con">
                 <a href="/" class="logo"><img src="./Media/logos/digixcalelogo.png"></a>
@@ -247,27 +248,27 @@
                     <p class="contact-desc">Stop guessing. Fill out the form below for a Free Competitor Audit & Growth
                         Strategy Session.</p>
 
-                    <form action="#" class="glass-form">
-
+                    <form action="https://api.web3forms.com/submit" class="glass-form" method="post">
+                        <input type="hidden" name="access_key" value="9d532478-8acf-41c6-b3b7-b0f762cb4ce3">
                         <div class="input-row">
                             <div class="input-group">
                                 <label>Full Name *</label>
-                                <input type="text" placeholder="Enter your name" required>
+                                <input type="text" name="Full_Name" placeholder="Enter your name" required>
                             </div>
                             <div class="input-group">
                                 <label>Email Address *</label>
-                                <input type="email" placeholder="Enter your email" required>
+                                <input type="email" name="Email_Address" placeholder="Enter your email">
                             </div>
                         </div>
 
                         <div class="input-row">
                             <div class="input-group">
                                 <label>Phone Number *</label>
-                                <input type="tel" placeholder="+91 XXXXX XXXXX" required>
+                                <input type="tel" name="Phone_Number" placeholder="+91 XXXXX XXXXX" required>
                             </div>
                             <div class="input-group">
                                 <label>Service Interested In</label>
-                                <select>
+                                <select name="Service_Interested" required>
                                     <option value="" disabled selected>Select a Service</option>
                                     <option value="web">Web Development & SEO Optimization</option>
                                     <option value="app">Social Media Management</option>
@@ -281,7 +282,7 @@
 
                         <div class="input-group">
                             <label>Your Message</label>
-                            <textarea rows="4" placeholder="Tell us about your project..."></textarea>
+                            <textarea rows="4" name="Message" placeholder="Tell us about your project..."></textarea>
                         </div>
 
                         <button type="submit" class="submit-btn">Send Message <i
@@ -367,11 +368,9 @@
             </div>
         </footer>
 
-
+        <div id="footer-placeholder"></div>
     </div>
-
-
-
+    <script src="./JS/main.js"></script>
 </body>
 
 </html>

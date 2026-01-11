@@ -1484,11 +1484,10 @@ header {
 
         .contact-container {
         flex-direction: column-reverse; /* Mobile pe Image upar, Form niche */
-        gap: 40px;
+        gap: 60px;
     }
     
     .input-row {
-        flex-direction: column; /* Inputs ek ke niche ek */
         gap: 20px;
     }
     
@@ -1498,7 +1497,8 @@ header {
     }
     
     .submit-btn {
-        width: 100%; /* Full width button on mobile */
+        display: flex;
+        align-items: center;
         justify-content: center;
     }
 
@@ -1683,6 +1683,41 @@ header {
         padding: 60px 20px;
     }
 
+    .contact-container {
+        flex-direction: column-reverse; /* Mobile pe Image upar, Form niche */
+        gap: 40px;
+    }
+    
+    .input-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .contact-image img {
+        transform: none; /* Mobile pe 3D effect hata diya */
+        max-width: 100%;
+    }
+
+    .contact-subtitle{
+        font-size: 0.80rem;
+    }
+
+    .contact-title{
+        font-size: 2rem;
+        line-height: 2.2rem;
+    }
+
+    .contact-desc{
+        font-size: 0.9rem;
+
+    }
+    
+    .submit-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+
 }
 
 @media (max-width: 480px){
@@ -1764,15 +1799,20 @@ header {
     border-top: 1px solid #ffffff31;
     padding: 0;
     padding-top: 7px;
-    
+    gap: 15px;
 }
 
 .bottom .maybe{
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .bottom .quote-top{
     font-size: 14px;
+}
+
+.bento-btn{
+    padding: 8px 16px;
+    font-size: 12px;
 }
 
 .expert-top p, .expert-bottom p 
