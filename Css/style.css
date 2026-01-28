@@ -194,9 +194,9 @@ header {
     /* --- MOBILE MENU (Using Transform for better performance) --- */
     .nav-list {
         position: fixed;
-        top: 0;
+        top: -30%;
         right: 0; /* Right se chipka rahega */
-        width: 70%;
+        width: 100%;
         height: 100vh;
         background: rgba(5, 5, 16, 0.98);
         backdrop-filter: blur(20px);
@@ -206,7 +206,7 @@ header {
         gap: 40px;
         box-shadow: -5px 0 15px rgba(0,0,0,0.5);
         z-index: 1000;
-        
+        margin-right: -20px;
         /* Default State: Screen ke bahar (Right side) */
         transform: translateX(120%);
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -215,7 +215,7 @@ header {
     /* Jab JS se 'show-menu' class lagegi */
     .nav-list.show-menu {
         /* Screen ke andar slide karega */
-        transform: translateX(20%);
+        transform: translateX(0%);
     }
 
     .menu {
@@ -226,11 +226,13 @@ header {
     /* --- TOGGLE BUTTON --- */
     #nav-toggle {
         display: block;
-        font-size: 1.8rem;
-        color: white;
+        font-size: 1.6rem;
+        color: var(--neon-glow);
         cursor: pointer;
         z-index: 1001;
     }
+
+    
 
     /* --- CLOSE BUTTON --- */
     .nav-close {
@@ -1290,6 +1292,12 @@ header {
 /* Header Styles (Consistent with other sections) */
 .team-header { margin-bottom: 60px; }
 
+.team-highlight{
+    background: linear-gradient(to right, #fff, var(--primary-green));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
 /* --- Team Grid (Founders Side-by-Side) --- */
 .team-grid {
     display: flex;
@@ -1662,7 +1670,7 @@ header {
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    padding: 0px 60px;
+    padding: 0px 40px;
     z-index: 1000;
     }
 

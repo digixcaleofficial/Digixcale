@@ -48,6 +48,7 @@ function initMobileMenu() {
     if(navToggle && navMenu){
         navToggle.addEventListener('click', () =>{
             navMenu.classList.add('show-menu');
+            navToggle.style.display = 'none';
         });
     }
 
@@ -55,6 +56,7 @@ function initMobileMenu() {
     if(navClose && navMenu){
         navClose.addEventListener('click', () =>{
             navMenu.classList.remove('show-menu');
+            navToggle.style.display = 'block';
         });
     }
 
