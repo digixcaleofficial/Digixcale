@@ -111,5 +111,25 @@ function fixNavLinks(basePath) {
     });
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+
+});
+
 // 4. Run on Load
-document.addEventListener("DOMContentLoaded", loadComponents);
+document.addEventListener("DOMContentLoaded", ()=> {
+        loadComponents();
+        const partnerSwiper = new Swiper('.partner-swiper', {
+        spaceBetween: 80, 
+        slidesPerView: 'auto', 
+        loop: true, 
+        speed: 3000, 
+        freeMode: true, // Ticker effect ko smooth banane ke liye
+        loopAdditionalSlides: 5, // Swiper ko extra slides clone karne ke liye bolta hai
+        autoplay: {
+            delay: 0, 
+            disableOnInteraction: false, 
+        },
+        allowTouchMove: false, 
+    });
+});
+

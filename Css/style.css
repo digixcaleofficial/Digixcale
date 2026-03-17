@@ -625,7 +625,137 @@ header {
     100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.1); }
 }
 
-/* --- Responsive (Mobile) --- */
+/* Section Styling */
+/* .partners {
+    padding: 60px 0;
+    background-color: var(--bg-dark); 
+    text-align: center;
+    overflow: hidden; /* Extra safe 
+}
+
+.partners-title {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    font-weight: 600;
+}
+
+/* 🔥 CRITICAL: Constant speed ke liye ye lagana zaroori hai 
+.partner-swiper .swiper-wrapper {
+    transition-timing-function: linear !important; 
+}
+
+/* Slide and Logo Styling 
+.partner-swiper .swiper-slide {
+    width: auto; /* Taki logo apni asli width le, stretch na ho 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.partner-swiper .swiper-slide img {
+    height: 60px; /* Logo ki height yaha se set kar
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.6;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.partner-swiper .swiper-slide img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+} */
+
+/* Section & Title */
+
+.partners {
+    padding: 60px 0;
+    background-color: var(--bg-dark); /* Apna theme color rakhna */
+    text-align: center;
+}
+
+.partners-subtitle {
+    color: var(--neon-glow);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.partners-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    /* Wahi Gradient Text jo tune pehle use kiya tha */
+    background: linear-gradient(to right, #fff, var(--primary-green));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Wrapper (Bahar ka dabba jo edges ko hide karega) */
+.partner-wrapper {
+    width: 100%;
+    overflow: hidden; 
+    position: relative;
+    white-space: nowrap;
+    padding-top: 40px;
+}
+
+/* Optional: Fading Edges (Right aur Left se thoda shadow effect) */
+.partner-wrapper::before,
+.partner-wrapper::after {
+    position: absolute;
+    top: 0;
+    width: 150px;
+    height: 100%;
+    content: "";
+    z-index: 2;
+}
+.partner-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, var(--bg-dark) 0%, transparent 100%);
+}
+.partner-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, var(--bg-dark) 0%, transparent 100%);
+}
+
+/* Track (Jo actual mein move karega) */
+.partner-track {
+    display: inline-flex;
+    width: max-content;
+    /* 20s speed hai, slow karna ho toh 30s ya 40s kar dena. 'linear' se speed constant rahegi */
+    animation: infiniteScroll 20s linear infinite; 
+}
+
+/* Slide & Logo Styling */
+.slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 40px; /* Logos ke beech ki spacing yaha se aayegi */
+}
+
+.slide img {
+    height: 80px; /* Logo ki height */
+    width: auto;
+    object-fit: contain;
+    transition: 0.3s ease-in-out;
+}
+
+/* The Infinite Scroll Animation */
+@keyframes infiniteScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Exact half shift hoga, fir wapas 0 pe aayega bina kisi ko pata chale */
+        transform: translateX(-50%); 
+    }
+}
 
 
 /* --- Services Section --- */
@@ -1900,6 +2030,29 @@ header {
         font-size: 0.8rem;
         font-weight: 600;
     }
+
+    .partners-subtitle{
+        font-size: 0.7rem;
+        line-height: 0.8rem;
+    }
+
+    .partners-title{
+        font-size: 1.5rem;
+        line-height: 1.2;
+    }
+
+    .slide{
+        padding: 0px 20px;
+    }
+
+    .slide img {
+    height: 60px; /* Logo ki height */
+    width: auto;
+    object-fit: contain;
+    transition: 0.3s ease-in-out;
+}
+
+    
 
     .services{
         padding: 60px 20px
