@@ -118,18 +118,35 @@ document.addEventListener("DOMContentLoaded", () => {
 // 4. Run on Load
 document.addEventListener("DOMContentLoaded", ()=> {
         loadComponents();
-        const partnerSwiper = new Swiper('.partner-swiper', {
-        spaceBetween: 80, 
-        slidesPerView: 'auto', 
-        loop: true, 
-        speed: 3000, 
-        freeMode: true, // Ticker effect ko smooth banane ke liye
-        loopAdditionalSlides: 5, // Swiper ko extra slides clone karne ke liye bolta hai
+const testiSwiper = new Swiper('.testi-swiper', {
+        loop: true, // Infinite loop
+        spaceBetween: 30, // Cards ke beech ka gap
+        grabCursor: true, // Hover karne pe 'hand' icon aayega
+        
+        // Auto scroll
         autoplay: {
-            delay: 0, 
-            disableOnInteraction: false, 
+            delay: 4000, // 4 seconds baad slide change hogi
+            disableOnInteraction: false, // User touch kare tab bhi chalta rahe
         },
-        allowTouchMove: false, 
+        
+        // Niche wale dots
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        
+        // Screen size ke hisaab se layout
+        breakpoints: {
+            0: {
+                slidesPerView: 1, // Mobile pe 1 card
+            },
+            768: {
+                slidesPerView: 2, // Tablet pe 2 cards
+            },
+            1024: {
+                slidesPerView: 3, // Laptop pe 3 cards
+            }
+        }
     });
 });
 

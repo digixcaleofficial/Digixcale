@@ -1063,7 +1063,149 @@ header {
     box-shadow: 0 0 15px rgba(76, 175, 80, 0.3); transition: 0.3s; white-space: nowrap;
 }
 .bento-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(76, 175, 80, 0.6); }
+/* --- testimonials section --- */
 
+/* --- Testimonials Section Base --- */
+/* --- Testimonials Base --- */
+.testimonials {
+    padding: 80px 5%;
+    background-color: var(--bg-dark); 
+    position: relative;
+    z-index: 1;
+    overflow: hidden; /* Bahar nikalte hue slides ko hide karega */
+}
+
+.testimonials-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.testimonials-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.testi-subtitle {
+    color: var(--neon-glow);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.testi-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    /* Wahi Gradient Text jo tune pehle use kiya tha */
+    background: linear-gradient(to right, #fff, var(--primary-green));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* --- Swiper Slide Layout --- */
+.testi-swiper {
+    padding-bottom: 60px; /* Dots ke liye space chhodna */
+    padding-top: 20px; /* Hover effect space ke liye */
+}
+
+.testi-swiper .swiper-wrapper {
+    align-items: stretch; 
+}
+
+.swiper-slide {
+    height: auto; /* Sab cards ki height same karne ke liye */
+}
+
+/* --- Premium Testimonial Card --- */
+.testi-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 20px 20px 20px 20px;
+    height: 100%; /* Parent slide ki height inherit karega */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.4s ease;
+}
+
+.testi-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(76, 175, 80, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(76, 175, 80, 0.1);
+}
+
+/* --- Typography & Quote Icon --- */
+.testi-quote {
+    color: #cccccc;
+    font-size: 16px;
+    line-height: 22px;
+    font-style: italic;
+    margin-bottom: 15px;
+    position: relative;
+}
+.know-more{
+    text-decoration: none;
+    color: var(--neon-glow);
+}
+
+.testi-quote::before {
+    content: '\201C';
+    font-size: 4rem;
+    color: rgba(76, 175, 80, 0.2);
+    position: absolute;
+    top: 0;
+    left: -20px;
+    font-family: serif;
+    z-index: -1;
+}
+
+/* --- Client Profile --- */
+.testi-client {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+}
+
+.testi-client img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary-green, #4CAF50);
+}
+
+.client-info h3 {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 0px 0;
+}
+
+.client-info p {
+    color: #888;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* --- Swiper Pagination Dots Styling --- */
+.swiper-pagination-bullet {
+    background-color: rgba(255, 255, 255, 0.4);
+    opacity: 1;
+    width: 10px;
+    height: 10px;
+    transition: 0.3s;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: var(--primary-green, #4CAF50);
+    width: 30px; /* Active dot ko lamba (pill shape) banane ke liye */
+    border-radius: 5px;
+}
 
 
 /* --- Footer Styling --- */
@@ -2041,6 +2183,10 @@ header {
         line-height: 1.2;
     }
 
+    
+
+    
+
     .slide{
         padding: 0px 20px;
     }
@@ -2103,6 +2249,56 @@ header {
         .why-us{
         padding: 60px 20px;
     }
+
+    .testi-subtitle{
+        font-size: 0.7rem;
+        line-height: 0.8rem;
+    }
+
+    .testi-title{
+        font-size: 1.5rem;
+        line-height: 1.2;
+    }
+
+    .testi-quote {
+    color: #cccccc;
+    font-size: 14px;
+    line-height: 20px;
+    font-style: italic;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.testi-client {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+}
+
+.testi-client img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary-green, #4CAF50);
+}
+
+.client-info h3 {
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 0 0;
+}
+
+.client-info p {
+    color: #888;
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+
 
     .contact-container {
         flex-direction: column-reverse; /* Mobile pe Image upar, Form niche */
