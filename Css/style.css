@@ -728,7 +728,7 @@ header {
     display: inline-flex;
     width: max-content;
     /* 20s speed hai, slow karna ho toh 30s ya 40s kar dena. 'linear' se speed constant rahegi */
-    animation: infiniteScroll 20s linear infinite; 
+    animation: infiniteScroll 60s linear forwards infinite; 
 }
 
 /* Slide & Logo Styling */
