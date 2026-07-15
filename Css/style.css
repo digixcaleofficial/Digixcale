@@ -862,7 +862,116 @@ header {
     line-height: 1.6;
 }
 
-/* --- Responsive --- */
+/* --- Gallery --- */
+
+/* --- Gallery Section Base --- */
+.portfolio-gallery {
+    padding: 80px 5%;
+    background-color: var(--bg-dark); /* Same dark background */
+    position: relative;
+    z-index: 1;
+}
+
+.gallery-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Section Header --- */
+.gallery-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.gallery-subtitle {
+    color: var(--primary-green, #4CAF50);
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.gallery-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: white;
+    margin: 0;
+}
+
+/* --- The Grid Magic --- */
+.gallery-grid {
+    display: grid;
+    /* Auto-fit se ye mobile pe 1 column aur PC pe multiple columns ban jayega */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px; /* Images ke beech ka gap */
+}
+
+/* --- Individual Image Box --- */
+.gallery-item {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden; /* Overlay aur zoom effect bahar nahi jayega */
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    /* Image ko box ke barabar rakhne ke liye aspect ratio */
+    aspect-ratio: 4 / 3; 
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Image stretch na ho */
+    transition: transform 0.5s ease; /* Smooth zoom ke liye */
+}
+
+/* --- Hover Overlay (Text & Color) --- */
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(76, 175, 80, 0.2));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Text neeche dikhega */
+    padding: 30px;
+    opacity: 0; /* Default invisible */
+    transition: all 0.4s ease;
+}
+
+.gallery-overlay h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin: 0 0 5px 0;
+    transform: translateY(20px); /* Text thoda neeche se aayega */
+    transition: transform 0.4s ease;
+}
+
+.gallery-overlay p {
+    color: var(--primary-green, #4CAF50);
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+    transition-delay: 0.1s; /* Title ke halka sa baad aayega */
+}
+
+/* --- 🔥 Hover Action --- */
+.gallery-item:hover img {
+    transform: scale(1.1); /* Image badi hogi */
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1; /* Overlay dikhne lagega */
+}
+
+.gallery-item:hover .gallery-overlay h3,
+.gallery-item:hover .gallery-overlay p {
+    transform: translateY(0); /* Text apni asli jagah pe slide hoga */
+}
 
 
 .why-us {
@@ -1584,7 +1693,7 @@ header {
     border: 1px solid rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(10px);
     border-radius: 20px;
-    padding: 40px;
+    padding: 40px 20px;
     width: 350px; /* Fixed width for consistency */
     transition: all 0.4s ease;
     position: relative;
