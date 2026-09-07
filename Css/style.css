@@ -757,6 +757,484 @@ header {
     }
 }
 
+/* --- Showcase & Work Portfolio Section --- */
+.showcase {
+    padding: 80px 5%;
+    background-color: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+}
+
+.showcase-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Tab Navigation Buttons */
+.showcase-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    padding: 12px 28px;
+    background: var(--glass-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 40px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover, .tab-btn.active {
+    background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+    border-color: transparent;
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Tab Content Visibility */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.4s ease forwards;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Sub-client Selector for Meta Ads */
+.client-filter {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.client-pill {
+    padding: 8px 18px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.client-pill.active, .client-pill:hover {
+    border-color: var(--neon-glow);
+    color: var(--neon-glow);
+    background: rgba(0, 255, 136, 0.05);
+}
+
+/* Media Cards Grid */
+.showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.showcase-card {
+    background: var(--glass-bg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.showcase-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--primary-green);
+    box-shadow: 0 10px 25px rgba(76, 175, 80, 0.2);
+}
+
+.showcase-preview {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    overflow: hidden;
+}
+
+.showcase-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.showcase-card:hover .showcase-preview img {
+    transform: scale(1.05);
+}
+
+/* Play Façade Button for Fast Loading */
+.play-facade {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background: rgba(0, 51, 102, 0.8);
+    border: 2px solid var(--neon-glow);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+    transition: 0.3s;
+}
+
+.play-facade:hover {
+    transform: translate(-50%, -50%) scale(1.15);
+    background: var(--primary-green);
+}
+
+.showcase-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    justify-content: space-between;
+}
+
+.showcase-tag {
+    color: var(--neon-glow);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.showcase-title {
+    font-size: 1.2rem;
+    color: #fff;
+    font-weight: 600;
+}
+
+.showcase-desc {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.4;
+}
+
+.showcase-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary-green);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: 0.2s;
+}
+
+.showcase-link:hover {
+    color: var(--neon-glow);
+    transform: translateX(4px);
+}
+
+/* --- View Report Button Styling --- */
+.view-report-btn {
+    background: transparent;
+    border: none;
+    color: var(--primary-green);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.view-report-btn:hover {
+    color: var(--neon-glow);
+    transform: translateX(3px);
+}
+
+/* Hover Zoom Hint Icon on Card Image */
+.report-preview {
+    cursor: pointer;
+    position: relative;
+}
+
+.preview-zoom-hint {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 44px;
+    height: 44px;
+    background: rgba(5, 5, 16, 0.75);
+    border: 1px solid var(--neon-glow);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.1rem;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.report-preview:hover .preview-zoom-hint {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* --- Fullscreen Lightbox Modal --- */
+.lightbox-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(5, 5, 16, 0.92);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    cursor: zoom-out;
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 90vh;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(76, 175, 80, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    cursor: default;
+    animation: zoomIn 0.3s ease;
+    object-fit: contain;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.85); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-weight: 300;
+    cursor: pointer;
+    transition: 0.2s;
+    line-height: 1;
+}
+
+.lightbox-close:hover {
+    color: var(--neon-glow);
+}
+
+/* =================================================================
+   PURE 4-COLUMN 9:16 VERTICAL REELS ENGINE
+   ================================================================= */
+.reels-pure-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+    width: 100%;
+    margin-top: 10px;
+}
+/* Desktop: Default Video View (4 Cards) */
+#meta-ads .showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+}
+
+#meta-ads .showcase-card.reel-item img,
+.meta-videos-4col .meta-reel-item img,
+.reel-item img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important; /* Forces image center */
+    display: block;
+}
+
+/* Desktop Video Mode (Videos = 4 Columns) */
+#meta-ads .showcase-grid.is-video-view {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+/* Master Reel Item (Unified - No Duplicate Conflicts) */
+.reel-item,
+.showcase-card.reel-item {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #000000;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    padding: 0 !important;
+    display: block;
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.reel-item img,
+..reel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+/* Dark Glass Gradient Overlay */
+.reel-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.75) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    opacity: 0.85;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+/* Glowing Play Icon */
+.reel-play-icon {
+    width: 58px;
+    height: 58px;
+    background: rgba(0, 51, 102, 0.85);
+    border: 2px solid var(--neon-glow);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 1.3rem;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+/* Instagram / In-site Tag at Bottom */
+.reel-badge {
+    position: absolute;
+    bottom: 18px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.5px;
+}
+
+.reel-badge i {
+    color: #E1306C;
+}
+
+/* Hover States */
+.reel-item:hover,
+.showcase-card.reel-item:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--primary-green);
+    box-shadow: 0 15px 35px rgba(76, 175, 80, 0.3);
+}
+
+.reel-item:hover img,
+.showcase-card.reel-item:hover img {
+    transform: scale(1.08);
+}
+
+.reel-item:hover .reel-overlay {
+    opacity: 1;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.reel-item:hover .reel-play-icon {
+    transform: scale(1.15);
+    background: var(--primary-green);
+    border-color: #ffffff;
+}
+
+/* Standard Iframe (Instagram & YT - perfectly anchored at top 0, left 0) */
+.reel-item iframe,
+.showcase-card.reel-item iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 18px;
+    display: block;
+    background: #000;
+    z-index: 5;
+}
+
+/* Dedicated Google Drive Perfect Centering Wrapper */
+.reel-item .drive-player-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    border-radius: 18px;
+    overflow: hidden;
+    z-index: 5;
+}
+
+.reel-item .drive-player-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
 
 /* --- Services Section --- */
 .services {
@@ -1969,6 +2447,17 @@ header {
 .quote-top{
     font-size: 1.2rem;
 }
+
+#meta-ads .showcase-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 20px;
+    }
+
+    /* Videos: 4 columns se switch hokar exactly 2 columns */
+    #meta-ads .showcase-grid.is-video-view {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 20px;
+    }
 }
 
 
@@ -2448,6 +2937,10 @@ header {
         justify-content: center;
     }
 
+    #meta-ads .showcase-grid {
+        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+        gap: 20px;
+    }
 
 }
 
@@ -2684,6 +3177,10 @@ header {
 }
 
 
-
-
-
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+    .reels-pure-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+}

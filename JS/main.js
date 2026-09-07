@@ -1,7 +1,5 @@
 async function loadComponents() {
     try {
-        // --- Determine Base Path ---
-        // Agar hum kisi folder ke andar hain (e.g., /Html/), toh path '../' hoga
         const basePath = './';
 
         // --- Load Header ---
@@ -12,9 +10,6 @@ async function loadComponents() {
         const headerPlaceholder = document.getElementById('header-placeholder');
         if (headerPlaceholder) {
             headerPlaceholder.innerHTML = headerData;
-            
-            // 🔥 CRITICAL FIX: Header HTML inject hone ke baad hi menu initialize karo
-            // Thoda timeout diya hai taaki browser DOM ko update kar sake
             setTimeout(() => {
                 initMobileMenu();
                 setActiveLink();
@@ -37,116 +32,209 @@ async function loadComponents() {
     }
 }
 
-// 2. Initialize Mobile Menu (Hamburger Logic)
+// Mobile Menu Toggle
 function initMobileMenu() {
-    // Ab ye elements pakka milenge kyunki humne wait kiya hai
     const navMenu = document.getElementById('nav-menu');
     const navToggle = document.getElementById('nav-toggle'); 
     const navClose = document.getElementById('nav-close');    
 
-    /* --- MENU SHOW --- */
     if(navToggle && navMenu){
-        navToggle.addEventListener('click', () =>{
+        navToggle.addEventListener('click', () => {
             navMenu.classList.add('show-menu');
             navToggle.style.display = 'none';
         });
     }
 
-    /* --- MENU HIDDEN (Close Button) --- */
     if(navClose && navMenu){
-        navClose.addEventListener('click', () =>{
+        navClose.addEventListener('click', () => {
             navMenu.classList.remove('show-menu');
             navToggle.style.display = 'block';
         });
     }
 
-    /* --- REMOVE MENU ON LINK CLICK --- */
     const navLinks = document.querySelectorAll('.menu');
-    const linkAction = () =>{
+    navLinks.forEach(n => n.addEventListener('click', () => {
         if(navMenu) navMenu.classList.remove('show-menu');
-    }
-    navLinks.forEach(n => n.addEventListener('click', linkAction));
+    }));
 }
 
+// Active Nav Link Highlighter
 function setActiveLink() {
-    // 1. Current Page ka naam nikalo (e.g., "services.html")
     let currentPage = window.location.pathname.split("/").pop();
-
-    // Agar root path ("/") hai toh index.html maan lo
     if (currentPage === "") currentPage = "index.html";
 
-    // 2. Saare menu links select karo
     const navLinks = document.querySelectorAll('.menu');
-
     navLinks.forEach(link => {
-        // Pehle sabse active class hatao (Reset)
         link.classList.remove('menu-active');
-
-        // Link ka href check karo
         const linkHref = link.getAttribute('href');
 
-        // Logic: Agar link ke href mein current page ka naam hai
-        if (linkHref.includes(currentPage)) {
+        if (linkHref && linkHref.includes(currentPage)) {
             link.classList.add('menu-active');
-        } 
-        // Special Case: Agar Home page hai aur href "/" ya "index.html" hai
-        else if ((currentPage === "index.html" || currentPage === "") && (linkHref === "/" || linkHref.includes("index.html"))) {
+        } else if ((currentPage === "index.html" || currentPage === "") && (linkHref === "/" || linkHref.includes("index.html"))) {
             link.classList.add('menu-active');
         }
     });
 }
 
-// 3. Fix Navigation Links based on location
-function fixNavLinks(basePath) {
-    if (basePath === './') return;
+// Main Portfolio Tab Switcher
+function switchWorkTab(tabId, btnElement) {
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
 
-    const links = document.querySelectorAll('a');
-    links.forEach(link => {
-        const href = link.getAttribute('href');
-        if (href && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('../')) {
-            if(href === 'index.html' || href === '/') {
-                link.setAttribute('href', '../index.html');
-            }
+    document.getElementById(tabId).classList.add('active');
+    btnElement.classList.add('active');
+}
+
+// Meta Ads: Reports vs Videos Switcher (Responsive Class-Based)
+function filterMetaMediaType(selectedType, element) {
+    document.querySelectorAll('.client-filter .client-pill').forEach(pill => {
+        pill.classList.remove('active');
+    });
+    element.classList.add('active');
+
+    const gridContainer = document.querySelector('#meta-ads .showcase-grid');
+    if (gridContainer) {
+        if (selectedType === 'video') {
+            gridContainer.classList.add('is-video-view');
+        } else {
+            gridContainer.classList.remove('is-video-view');
+        }
+    }
+
+    const cards = document.querySelectorAll('#meta-ads .showcase-card');
+    cards.forEach(card => {
+        if (card.getAttribute('data-type') === selectedType) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
         }
     });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+// Video Editing Tab Sub-Category Switcher
+function filterReelTab(category, btnElement) {
+    document.querySelectorAll('.reel-filter .client-pill').forEach(pill => {
+        pill.classList.remove('active');
+    });
+    btnElement.classList.add('active');
 
+    const allReels = document.querySelectorAll('.reels-pure-grid .reel-item');
+    allReels.forEach(reel => {
+        if (reel.getAttribute('data-category') === category) {
+            reel.style.display = 'block';
+        } else {
+            reel.style.display = 'none';
+        }
+    });
+}
+
+// Lazy Video Player (YouTube & Generic)
+function playVideoFacade(container, embedUrl) {
+    const separator = embedUrl.includes('?') ? '&' : '?';
+    container.innerHTML = `
+        <iframe 
+            src="${embedUrl}${separator}autoplay=1" 
+            title="Video Player" 
+            style="width:100%;height:100%;border:none;border-radius:18px;" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    `;
+    container.style.cursor = 'default';
+    container.onclick = null;
+}
+
+// Instagram Reel Iframe Injector
+function playInstagramFacade(container, rawUrl) {
+    let cleanUrl = rawUrl.split('?')[0];
+    if (!cleanUrl.endsWith('/')) cleanUrl += '/';
+    const embedUrl = cleanUrl.includes('/embed/') ? cleanUrl : `${cleanUrl}embed/`;
+
+    container.innerHTML = `
+        <iframe 
+            src="${embedUrl}" 
+            title="Instagram Reel Player" 
+            allowtransparency="true" 
+            allowfullscreen="true" 
+            frameborder="0" 
+            scrolling="no" 
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture">
+        </iframe>
+    `;
+    container.style.cursor = 'default';
+    container.onclick = null;
+}
+
+// Google Drive Centered Player
+function playDriveFacade(container, rawDriveUrl) {
+    const match = rawDriveUrl.match(/\/d\/([a-zA-Z0-9_-]+)/);
+    let fileId = match ? match[1] : '';
+
+    if (!fileId && rawDriveUrl.includes('id=')) {
+        fileId = rawDriveUrl.split('id=')[1].split('&')[0];
+    }
+
+    if (!fileId) return;
+
+    const previewUrl = `https://drive.google.com/file/d/${fileId}/preview`;
+
+    container.innerHTML = `
+        <div class="drive-player-wrapper">
+            <iframe 
+                src="${previewUrl}" 
+                title="Google Drive Video Player" 
+                allow="autoplay; fullscreen" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    `;
+    container.style.cursor = 'default';
+    container.onclick = null;
+}
+
+// Lightbox Handlers
+function openReportLightbox(imageSrc) {
+    const modal = document.getElementById('reportLightbox');
+    const modalImg = document.getElementById('lightboxImg');
+    if (modal && modalImg) {
+        modalImg.src = imageSrc;
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeReportLightbox() {
+    const modal = document.getElementById('reportLightbox');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+}
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeReportLightbox();
 });
 
-// 4. Run on Load
-document.addEventListener("DOMContentLoaded", ()=> {
-        loadComponents();
-const testiSwiper = new Swiper('.testi-swiper', {
-        loop: true, // Infinite loop
-        spaceBetween: 30, // Cards ke beech ka gap
-        grabCursor: true, // Hover karne pe 'hand' icon aayega
-        
-        // Auto scroll
+// Run Initialization on Load
+document.addEventListener("DOMContentLoaded", () => {
+    loadComponents();
+
+    new Swiper('.testi-swiper', {
+        loop: true,
+        spaceBetween: 30,
+        grabCursor: true,
         autoplay: {
-            delay: 4000, // 4 seconds baad slide change hogi
-            disableOnInteraction: false, // User touch kare tab bhi chalta rahe
+            delay: 4000,
+            disableOnInteraction: false,
         },
-        
-        // Niche wale dots
         pagination: {
             el: '.swiper-pagination',
             clickable: true,
         },
-        
-        // Screen size ke hisaab se layout
         breakpoints: {
-            0: {
-                slidesPerView: 1, // Mobile pe 1 card
-            },
-            768: {
-                slidesPerView: 2, // Tablet pe 2 cards
-            },
-            1024: {
-                slidesPerView: 3, // Laptop pe 3 cards
-            }
+            0: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 }
         }
     });
 });
-
