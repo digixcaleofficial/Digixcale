@@ -167,14 +167,19 @@ function playInstagramFacade(container, rawUrl) {
 
 // Google Drive Centered Player
 function playDriveFacade(container, rawDriveUrl) {
-    const match = rawDriveUrl.match(/\/d\/([a-zA-Z0-9_-]+)/);
-    let fileId = match ? match[1] : '';
+    let fileId = '';
 
-    if (!fileId && rawDriveUrl.includes('id=')) {
+    const matchD = rawDriveUrl.match(/\/d\/([a-zA-Z0-9_-]+)/);
+    if (matchD && matchD[1]) {
+        fileId = matchD[1];
+    } else if (rawDriveUrl.includes('id=')) {
         fileId = rawDriveUrl.split('id=')[1].split('&')[0];
     }
 
-    if (!fileId) return;
+    if (!fileId) {
+        console.error("Invalid Drive link:", rawDriveUrl);
+        return;
+    }
 
     const previewUrl = `https://drive.google.com/file/d/${fileId}/preview`;
 
@@ -182,7 +187,7 @@ function playDriveFacade(container, rawDriveUrl) {
         <div class="drive-player-wrapper">
             <iframe 
                 src="${previewUrl}" 
-                title="Google Drive Video Player" 
+                title="Drive Reel" 
                 allow="autoplay; fullscreen" 
                 allowfullscreen>
             </iframe>
