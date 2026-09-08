@@ -216,6 +216,39 @@ function closeReportLightbox() {
     }
 }
 
+/* POP up JS */
+
+// First-time visit detection & popup display
+function initFirstVisitPopup() {
+    const hasVisited = localStorage.getItem('digixcale_visited');
+
+    if (!hasVisited) {
+        // Page load hone ke 2 seconds baad smooth popup show hoga
+        setTimeout(() => {
+            const popup = document.getElementById('welcomePopup');
+            if (popup) {
+                popup.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Background scroll lock
+            }
+        }, 2000);
+    }
+}
+
+// Close Popup & mark visit in storage
+function closePopup() {
+    const popup = document.getElementById('welcomePopup');
+    if (popup) {
+        popup.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Scroll unlock
+        localStorage.setItem('digixcale_visited', 'true');
+    }
+}
+
+// Existing DOMContentLoaded ke andar call laga
+document.addEventListener("DOMContentLoaded", () => {
+    initFirstVisitPopup();
+});
+
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') closeReportLightbox();
 });

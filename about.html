@@ -155,6 +155,407 @@
     </section>
 
 
+    <section class="showcase" id="portfolio">
+        <div class="showcase-container">
+
+            <!-- Header -->
+            <div class="section-header text-center">
+                <h2 class="section-subtitle">● Proven Work</h2>
+                <h1 class="section-title">Case Studies & Deliverables</h1>
+            </div>
+
+            <!-- Main 3 Tabs -->
+            <div class="showcase-tabs">
+                <button class="tab-btn active" onclick="switchWorkTab('meta-ads', this)">
+                    <i class="fa-solid fa-chart-line"></i> Meta Ads Results
+                </button>
+                <button class="tab-btn" onclick="switchWorkTab('web-apps', this)">
+                    <i class="fa-solid fa-laptop-code"></i> Websites & CRM Apps
+                </button>
+                <button class="tab-btn" onclick="switchWorkTab('video-editing', this)">
+                    <i class="fa-solid fa-clapperboard"></i> Video Editing
+                </button>
+            </div>
+
+
+
+            <!-- TAB 1: Meta Ads -->
+
+            <div id="meta-ads" class="tab-content active">
+
+                <!-- Switcher: Reports vs Videos -->
+                <div class="client-filter">
+                    <span class="client-pill active" onclick="filterMetaMediaType('report', this)">
+                        <i class="fa-solid fa-chart-column"></i> Reports
+                    </span>
+                    <span class="client-pill" onclick="filterMetaMediaType('video', this)">
+                        <i class="fa-solid fa-play"></i> Videos
+                    </span>
+                </div>
+
+                <!-- 3-Column Responsive Grid -->
+                <div class="showcase-grid meta-grid-3">
+
+                    <!-- ================= REPORTS SECTION ================= -->
+                    <!-- REPORT CARD 1 -->
+                    <div class="showcase-card" data-type="report">
+                        <div class="showcase-preview">
+                            <img src="/Media/Reports/IWG - Report (august).png" alt="Insured With Goria Meta Ads Report"
+                                loading="lazy">
+                        </div>
+                        <div class="showcase-body">
+                            <div>
+                                <span class="showcase-tag">Auto Insurance • Canada</span>
+                                <h3 class="showcase-title">Insured With Goria</h3>
+                                <p class="showcase-desc">183 direct WhatsApp policy inquiries generated at $2.55 CAD CPL
+                                    (86% below benchmark).</p>
+                            </div>
+                            <div class="card-action-row">
+                                <span class="report-stat-pill"><i class="fa-solid fa-bolt"></i> 183 Leads</span>
+                                <button class="view-report-btn"
+                                    onclick="openReportLightbox('/Media/Reports/IWG - Report (august).png')">
+                                    View Report <i class="fa-solid fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- REPORT CARD 2 -->
+                    <div class="showcase-card" data-type="report">
+                        <div class="showcase-preview">
+                            <img src="/Media/Reports/Teletech - Report (August).jpeg" alt="Teletech Meta Ads Report"
+                                loading="lazy">
+                        </div>
+                        <div class="showcase-body">
+                            <div>
+                                <span class="showcase-tag">Telecommunications • Canada</span>
+                                <h3 class="showcase-title">TeleTech Canada</h3>
+                                <p class="showcase-desc">450+ verified business leads with automated WhatsApp routing
+                                    and zero ad spend leakage.</p>
+                            </div>
+                            <div class="card-action-row">
+                                <span class="report-stat-pill"><i class="fa-solid fa-bolt"></i> 450+ Leads</span>
+                                <button class="view-report-btn"
+                                    onclick="openReportLightbox('/Media/Reports/Teletech - Report (August).jpeg')">
+                                    View Report <i class="fa-solid fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- REPORT CARD 3 -->
+                    <div class="showcase-card" data-type="report">
+                        <div class="showcase-preview">
+                            <img src="/Media/Reports/AppleStore - Report (July).png" alt="Apple Store Report"
+                                loading="lazy">
+                        </div>
+                        <div class="showcase-body">
+                            <div>
+                                <span class="showcase-tag">Apple Store • Pune/PCMC</span>
+                                <h3 class="showcase-title">The Apple Store</h3>
+                                <p class="showcase-desc">1966+ leads generated through targeted meta campaigns for Apple
+                                    Products.</p>
+                            </div>
+                            <div class="card-action-row">
+                                <span class="report-stat-pill"><i class="fa-solid fa-bolt"></i> 1966+ Leads</span>
+                                <button class="view-report-btn"
+                                    onclick="openReportLightbox('/Media/Reports/AppleStore - Report (July).png')">
+                                    View Report <i class="fa-solid fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ================= VIDEOS SECTION (PURE 4-COLUMN 9:16) ================= -->
+                    <!-- VIDEO CARD 1: Insured With Goria (Verified YouTube) -->
+                    <div class="showcase-card reel-item" data-type="video" style="display: none;"
+                        onclick="playVideoFacade(this, 'https://www.youtube-nocookie.com/embed/s0hCMeGvCdA')">
+                        <img src="./Media/Partners/Insured_with_goria.jpeg" alt="Insured With Goria Ad" loading="lazy">
+                        <div class="reel-overlay">
+                            <div class="reel-play-icon"><i class="fa-solid fa-play"></i></div>
+                            <span class="reel-badge"><i class="fa-brands fa-meta"></i>385 Leads</span>
+                        </div>
+                    </div>
+
+                    <!-- VIDEO CARD 2: TeleTech Canada -->
+                    <div class="showcase-card reel-item" data-type="video" style="display: none;"
+                        onclick="playVideoFacade(this, 'https://youtube.com/embed/wfTSUFmAmx0')">
+                        <img src="./Media/Partners/TeleTech_Canada.jpeg" alt="TeleTech Canada Ad" loading="lazy">
+                        <div class="reel-overlay">
+                            <div class="reel-play-icon"><i class="fa-solid fa-play"></i></div>
+                            <span class="reel-badge"><i class="fa-brands fa-meta"></i>179 Leads</span>
+                        </div>
+                    </div>
+
+                    <!-- VIDEO CARD 3: Aviras Real Estate -->
+                    <div class="showcase-card reel-item" data-type="video" style="display: none;"
+                        onclick="playVideoFacade(this, 'https://youtube.com/embed/LGG3nyRpfsQ')">
+                        <img src="./Media/Partners/AppleStore.jpeg" alt="Apple Store" loading="lazy">
+                        <div class="reel-overlay">
+                            <div class="reel-play-icon"><i class="fa-solid fa-play"></i></div>
+                            <span class="reel-badge"><i class="fa-brands fa-meta"></i>4352 Leads</span>
+                        </div>
+                    </div>
+
+                    <!-- VIDEO CARD 4: 4th Video (To complete 4-column row) -->
+                    <div class="showcase-card reel-item" data-type="video" style="display: none;"
+                        onclick="playVideoFacade(this, 'https://youtube.com/embed/OHnEK6dvthI')">
+                        <img src="./Media/Work/Video Thumnails/Tours&Travels.jpeg" alt="Client 4 Ad Creative"
+                            loading="lazy">
+                        <div class="reel-overlay">
+                            <div class="reel-play-icon"><i class="fa-solid fa-play"></i></div>
+                            <span class="reel-badge"><i class="fa-brands fa-meta"></i>22 Leads In One day</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- TAB 2: Websites & Webapps -->
+            <div id="web-apps" class="tab-content">
+                <div class="showcase-grid meta-grid-3">
+
+                    <!-- CARD 1: EspoCRM Custom Automation & Lead Router -->
+                    <div class="showcase-card">
+                        <div class="showcase-preview">
+                            <img src="Media/Websites/DigiCrm.png" style="object-position: left center;"
+                                alt="Custom EspoCRM Lead Distribution Solution" loading="lazy" decoding="async">
+                        </div>
+                        <div class="showcase-body">
+                            <div>
+                                <span class="showcase-tag">Web App • CRM Automation</span>
+                                <h3 class="showcase-title">DigiCRM Lead Router</h3>
+                                <p class="showcase-desc">Custom CRM Automatic Whatsapp Lead Integration with Employee
+                                    Management System</p>
+                            </div>
+                            <div class="card-action-row">
+                                <a href="https://crm.digixcale.com" target="_blank" class="showcase-link">
+                                    View CRM <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 2: SK TV Repair Platform (Reference Design) -->
+                    <div class="showcase-card">
+                        <div class="showcase-preview">
+                            <img src="Media/Websites/SKtvRepair.png" style="object-position: left center;"
+                                alt="SK TV Repair Live Website Design" loading="lazy" decoding="async">
+                        </div>
+                        <div class="showcase-body">
+                            <div>
+                                <span class="showcase-tag">Website Project • Local SEO</span>
+                                <h3 class="showcase-title">SK TV Repair Platform</h3>
+                                <p class="showcase-desc">local TV repair website optimized for search rankings and
+                                    direct call generation.</p>
+                            </div>
+                            <div class="card-action-row">
+                                <a href="https://sktvrepair.in" target="_blank" class="showcase-link">
+                                    View Website <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 3: E-Commerce & Corporate Platform -->
+                    <div class="showcase-card">
+                        <div class="showcase-preview">
+                            <img src="Media/Websites/NSVEXIM.png" style="object-position: left center;"
+                                alt="Care Saviour Web Platform" loading="lazy" decoding="async">
+                        </div>
+                        <div class="showcase-body">
+                            <div>
+                                <span class="showcase-tag">Web Development • EXIM</span>
+                                <h3 class="showcase-title">NSV Trading and Company</h3>
+                                <p class="showcase-desc">Import and Export Website, showcasing all available products
+                                    and Worldwide Connectivity</p>
+                            </div>
+                            <div class="card-action-row">
+                                <a href="https://nsvexim.com" target="_blank" class="showcase-link">
+                                    View Website <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- TAB 3: Video Editing -->
+            <div id="video-editing" class="tab-content">
+
+                <!-- 4 Sub-Pills Categories -->
+                <div class="client-filter reel-filter">
+                    <span class="client-pill active" onclick="filterReelTab('talking-head', this)">
+                        <i class="fa-solid fa-user-tie"></i> Talking Head
+                    </span>
+                    <span class="client-pill" onclick="filterReelTab('product', this)">
+                        <i class="fa-solid fa-box-open"></i> Product
+                    </span>
+                    <span class="client-pill" onclick="filterReelTab('ugc', this)">
+                        <i class="fa-solid fa-bullhorn"></i> UGC
+                    </span>
+                    <span class="client-pill" onclick="filterReelTab('educational', this)">
+                        <i class="fa-solid fa-graduation-cap"></i> Educational
+                    </span>
+                </div>
+
+                <!-- 4-COLUMN REELS GRID -->
+                <div class="reels-pure-grid">
+
+                    <!-- ================= 1. TALKING HEAD REELS (4 REELS) ================= -->
+                    <!-- Reel 1: Example Reel ID 'C-XYZ123' -->
+                    <div class="reel-item" data-category="talking-head"
+                        onclick="playDriveFacade(this, 'https://drive.google.com/file/d/1h6Ou-ch8rZllUH0zQc3C11hi5KN2LESw/view?usp=sharing')">
+                        <img src="./Media/Work/Video Thumnails/AvirasRealEsate.png" alt="Talking Head Reel 1"
+                            loading="lazy">
+                        <div class="reel-overlay">
+                            <div class="reel-play-icon"><i class="fa-solid fa-play"></i></div>
+                            <span class="reel-badge"><i class="fa-solid fa-play"></i>Aviras RealEstate</span>
+                        </div>
+                    </div>
+
+                    <div class="reel-item" data-category="talking-head"
+                        onclick="playInstagramFacade(this, 'https://www.instagram.com/reel/DbDmar5g7bZ/embed/')">
+                        <img src="./Media/Work/Video Thumnails/Digixcale.png" alt="Talking Head Reel 2" loading="lazy">
+                        <div class="reel-overlay">
+                            <div class="reel-play-icon"><i class="fa-solid fa-play"></i></div>
+                            <span class="reel-badge"><i class="fa-brands fa-instagram"></i>Digixcale</span>
+                        </div>
+                    </div>
+
+                    <div class="reel-item" data-category="talking-head"
+                        onclick="playDriveFacade(this, 'https://drive.google.com/file/d/16qPKpF9O97Cxu5REAgobDi3p5zdBEyH_/view?usp=drive_link')">
+                        <img src="./Media/Work/Video Thumnails/IWGStorytelling.png" alt="Talking Head Reel 3"
+                            loading="lazy">
+                        <div class="reel-overlay">
+                            <div class="reel-play-icon"><i class="fa-solid fa-play"></i></div>
+                            <span class="reel-badge"><i class="fa-brands fa-instagram"></i>Insured with Goria</span>
+                        </div>
+                    </div>
+
+                    <div class="reel-item" data-category="talking-head"
+                        onclick="playDriveFacade(this, 'https://drive.google.com/file/d/1ywpAVY8F2hros_inJeicA30stTUld1UH/view?usp=sharing')">
+                        <img src="./Media/Work/Video Thumnails/Teletech.png" alt="Talking Head Reel 4" loading="lazy">
+                        <div class="reel-overlay">
+                            <div class="reel-play-icon"><i class="fa-solid fa-play"></i></div>
+                            <span class="reel-badge"><i class="fa-brands fa-instagram"></i>Teletech WIFI</span>
+                        </div>
+                    </div>
+
+                    <!-- ================= 2. PRODUCT REELS (4 REELS) ================= -->
+                    <div class="reel-item" data-category="product" style="display: none;"
+                        onclick="playDriveFacade(this, 'https://drive.google.com/file/d/15xcF4n997LUIDlwJlPERmCEusWjZeQ3r/view?usp=drive_link')">
+                        <img src="./Media/Work/Video Thumnails/MacBook.png" alt="Product Reel 1" loading="lazy">
+                        <div class="reel-overlay">
+                            <div class="reel-play-icon"><i class="fa-solid fa-play"></i></div>
+                            <span class="reel-badge"><i class="fa-brands fa-instagram"></i>AppleStore</span>
+                        </div>
+                    </div>
+                    <div class="reel-item" data-category="product" style="display: none;"
+                        onclick="playDriveFacade(this, 'https://drive.google.com/file/d/1WVDgj6dn6yitWrKChUl0Qbjgw5txc46k/view?usp=drive_link')">
+                        <img src="./Media/Work/Video Thumnails/DessertLand.png" alt="Product Reel 2" loading="lazy">
+                        <div class="reel-overlay">
+                            <div class="reel-play-icon"><i class="fa-solid fa-play"></i></div>
+                            <span class="reel-badge"><i class="fa-brands fa-instagram"></i>DessertLand Cakes</span>
+                        </div>
+                    </div>
+                    <div class="reel-item" data-category="product" style="display: none;"
+                        onclick="playDriveFacade(this, 'https://drive.google.com/file/d/18YDsmctsY4UjYlXYnaXPxLFW6IqwoouI/view?usp=drive_link')">
+                        <img src="./Media/Work/Video Thumnails/IphoneSummer.png" alt="Product Reel 3" loading="lazy">
+                        <div class="reel-overlay">
+                            <div class="reel-play-icon"><i class="fa-solid fa-play"></i></div>
+                            <span class="reel-badge"><i class="fa-brands fa-instagram"></i>AppleStore</span>
+                        </div>
+                    </div>
+                    <div class="reel-item" data-category="product" style="display: none;"
+                        onclick="playDriveFacade(this, 'https://drive.google.com/file/d/12OoKPBvXZi2i3lRf_hNGCmHsD3tJAeb1/view?usp=drive_link')">
+                        <img src="./Media/Work/Video Thumnails/MaksKitchen.png" alt="Product Reel 4" loading="lazy">
+                        <div class="reel-overlay">
+                            <div class="reel-play-icon"><i class="fa-solid fa-play"></i></div>
+                            <span class="reel-badge"><i class="fa-brands fa-instagram"></i>Maks Kitchen</span>
+                        </div>
+                    </div>
+
+                    <!-- ================= 3. UGC REELS (4 REELS) ================= -->
+
+                    <div class="reel-item" data-category="ugc" style="display: none;"
+                        onclick="playInstagramFacade(this, 'https://www.instagram.com/reel/Dc06jIGN_y6/embed/')">
+                        <img src="./Media/Work/Video Thumnails/FeedBackIWG.jpeg" alt="UGC Reel 2" loading="lazy">
+                        <div class="reel-overlay">
+                            <div class="reel-play-icon"><i class="fa-solid fa-play"></i></div>
+                            <span class="reel-badge"><i class="fa-brands fa-instagram"></i>Client FeedBack</span>
+                        </div>
+                    </div>
+                    <div class="reel-item" data-category="ugc" style="display: none;"
+                        onclick="playInstagramFacade(this, 'https://www.instagram.com/reel/DcgKaspt0eN/embed/')">
+                        <img src="./Media/Work/Video Thumnails/GreneroP10Mic.jpeg" alt="UGC Reel 1" loading="lazy">
+                        <div class="reel-overlay">
+                            <div class="reel-play-icon"><i class="fa-solid fa-play"></i></div>
+                            <span class="reel-badge"><i class="fa-brands fa-instagram"></i>MIC Review</span>
+                        </div>
+                    </div>
+                    <div class="reel-item" data-category="ugc" style="display: none;"
+                        onclick="playDriveFacade(this, 'https://drive.google.com/file/d/1BKSJhKux52Ot6Mts2JkueNGM54xx8vm0/view?usp=drive_link')">
+                        <img src="./Media/Work/Video Thumnails/HappyClientAS.png" alt="UGC Reel 1" loading="lazy">
+                        <div class="reel-overlay">
+                            <div class="reel-play-icon"><i class="fa-solid fa-play"></i></div>
+                            <span class="reel-badge"><i class="fa-brands fa-instagram"></i>AppleStore Happy
+                                Customers</span>
+                        </div>
+                    </div>
+                    <div class="reel-item" data-category="ugc" style="display: none;"
+                        onclick="playInstagramFacade(this, 'https://www.instagram.com/reel/DTxf_SSjBC9/embed/')">
+                        <img src="./Media/Work/Video Thumnails/MaksKitchenReview.png" alt="UGC Reel 3" loading="lazy">
+                        <div class="reel-overlay">
+                            <div class="reel-play-icon"><i class="fa-solid fa-play"></i></div>
+                            <span class="reel-badge"><i class="fa-brands fa-instagram"></i>Client FeedBack</span>
+                        </div>
+                    </div>
+
+                    <!-- ================= 4. EDUCATIONAL REELS (4 REELS) ================= -->
+                    <div class="reel-item" data-category="educational" style="display: none;"
+                        onclick="playInstagramFacade(this, 'https://www.instagram.com/reel/DcbB_guBBLN/embed/')">
+                        <img src="./Media/Work/Video Thumnails/IWG Report.jpeg" alt="Educational Reel 1" loading="lazy">
+                        <div class="reel-overlay">
+                            <div class="reel-play-icon"><i class="fa-solid fa-play"></i></div>
+                            <span class="reel-badge"><i class="fa-brands fa-instagram"></i>Insurance Report</span>
+                        </div>
+                    </div>
+                    <div class="reel-item" data-category="educational" style="display: none;"
+                        onclick="playDriveFacade(this, 'https://drive.google.com/file/d/1dy8MEuUv2wRtlRNwSchwMtK2UvblBogp/view?usp=drive_link')">
+                        <img src="./Media/Work/Video Thumnails/IWGEducational.png" alt="Educational Reel 2"
+                            loading="lazy">
+                        <div class="reel-overlay">
+                            <div class="reel-play-icon"><i class="fa-solid fa-play"></i></div>
+                            <span class="reel-badge"><i class="fa-brands fa-instagram"></i>Storytelling</span>
+                        </div>
+                    </div>
+                    <div class="reel-item" data-category="educational" style="display: none;"
+                        onclick="playInstagramFacade(this, 'https://www.instagram.com/reel/Dci48o5tdep/embed/')">
+                        <img src="./Media/Work/Video Thumnails/Teletech Report.jpeg" alt="Educational Reel 3"
+                            loading="lazy">
+                        <div class="reel-overlay">
+                            <div class="reel-play-icon"><i class="fa-solid fa-play"></i></div>
+                            <span class="reel-badge"><i class="fa-brands fa-instagram"></i>Teletech Report</span>
+                        </div>
+                    </div>
+                    <div class="reel-item" data-category="educational" style="display: none;"
+                        onclick="playDriveFacade(this, 'https://drive.google.com/file/d/18IWEJpVlHU94H15kd82tCDTc2XIgUpBv/view?usp=sharing')">
+                        <img src="./Media/Work/Video Thumnails/SMTraders.png" alt="Educational Reel 4" loading="lazy">
+                        <div class="reel-overlay">
+                            <div class="reel-play-icon"><i class="fa-solid fa-play"></i></div>
+                            <span class="reel-badge"><i class="fa-brands fa-instagram"></i>SM Traders</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
     <section class="contact" id="contact">
         <div class="contact-container">
 
