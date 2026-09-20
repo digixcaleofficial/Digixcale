@@ -1512,7 +1512,7 @@ header {
 .bento-box.box-1 {
     grid-area: box1;
     /* Background Image Yahan Laga Di */
-    background: url('../Media/images/handshake.jpg') center/cover no-repeat;
+    background: url('../Media/images/handshake.png') center/cover no-repeat;
     border-radius: 20px;
     position: relative;
     overflow: hidden;
