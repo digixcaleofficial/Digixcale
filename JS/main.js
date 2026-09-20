@@ -244,6 +244,62 @@ function closePopup() {
     }
 }
 
+// --- Lead Generation Modal Logic ---
+function initLeadModal() {
+    // Check if user already saw it in this session (so they aren't irritated)
+    const seenModal = sessionStorage.getItem('digixcale_lead_seen');
+
+    if (!seenModal) {
+        setTimeout(() => {
+            const modal = document.getElementById('leadModal');
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Lock background scroll
+            }
+        }, 2500); // 2.5 seconds delay
+    }
+}
+
+function closeLeadModal() {
+    const modal = document.getElementById('leadModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Restore scroll
+        sessionStorage.setItem('digixcale_lead_seen', 'true');
+    }
+}
+
+// Form Submit -> WhatsApp Direct Message
+function handleLeadSubmit(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('leadName').value.trim();
+    const phone = document.getElementById('leadPhone').value.trim();
+    const business = document.getElementById('leadBusiness').value.trim() || 'Not specified';
+    const service = document.getElementById('leadService').value;
+
+    // Apna agency WhatsApp number yahan replace kar (with country code, bina '+')
+    const agencyNumber = "918262878500"; 
+
+    // Professional WhatsApp Message format
+    const message = `*🔥 New Audit Request - DigiXcale*%0A%0A` +
+                    `*Name:* ${encodeURIComponent(name)}%0A` +
+                    `*Phone:* ${encodeURIComponent(phone)}%0A` +
+                    `*Business/Website:* ${encodeURIComponent(business)}%0A` +
+                    `*Service Needed:* ${encodeURIComponent(service)}`;
+
+    // Open WhatsApp
+    window.open(`https://wa.me/${agencyNumber}?text=${message}`, '_blank');
+
+    // Close modal
+    closeLeadModal();
+}
+
+// Run on page load
+document.addEventListener("DOMContentLoaded", () => {
+    initLeadModal();
+});
+
 // Existing DOMContentLoaded ke andar call laga
 document.addEventListener("DOMContentLoaded", () => {
     initFirstVisitPopup();
@@ -252,6 +308,114 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') closeReportLightbox();
 });
+
+// 1. loadComponents() ke andar Header aur Footer ke sath ye alert fetch add kar do:
+async function loadComponents() {
+    try {
+        const basePath = './';
+
+        // --- Load Header ---
+        const headerRes = await fetch(`${basePath}components/header.html`);
+        if (headerRes.ok) {
+            const headerPlaceholder = document.getElementById('header-placeholder');
+            if (headerPlaceholder) {
+                headerPlaceholder.innerHTML = await headerRes.text();
+                setTimeout(() => {
+                    initMobileMenu();
+                    setActiveLink();
+                }, 50);
+            }
+        }
+
+        // --- Load Footer ---
+        const footerRes = await fetch(`${basePath}components/footer.html`);
+        if (footerRes.ok) {
+            const footerPlaceholder = document.getElementById('footer-placeholder');
+            if (footerPlaceholder) footerPlaceholder.innerHTML = await footerRes.text();
+        }
+
+        // --- Load Global Alert Component ---
+        const alertPlaceholder = document.getElementById('alert-placeholder');
+        if (alertPlaceholder) {
+            const alertRes = await fetch(`${basePath}components/Alert.html`);
+            if (alertRes.ok) {
+                alertPlaceholder.innerHTML = await alertRes.text();
+            }
+        }
+
+    } catch (error) {
+        console.error("Error loading components:", error);
+    }
+}
+
+// --- Home Page FAQ Accordion Engine ---
+function toggleHomeFaq(button) {
+    const currentItem = button.closest('.faq-accordion-item');
+    const isAlreadyOpen = currentItem.classList.contains('open');
+
+    // Close all open accordion items
+    document.querySelectorAll('.faq-accordion-item').forEach(item => {
+        item.classList.remove('open');
+    });
+
+    // If clicked one wasn't open, open it
+    if (!isAlreadyOpen) {
+        currentItem.classList.add('open');
+    }
+}
+// 2. Global Alert Trigger Function (Use this anywhere on site!)
+let alertTimer = null;
+
+function showAlert(message, type = 'success', title = '') {
+    const modal = document.getElementById('dxGlobalAlert');
+    if (!modal) {
+        // Fallback agar component load nahi hua
+        window.alert(message);
+        return;
+    }
+
+    const titleElem = document.getElementById('dxAlertTitle');
+    const msgElem = document.getElementById('dxAlertMessage');
+    const iconElem = document.getElementById('dxAlertIcon');
+
+    // Remove previous types
+    modal.classList.remove('type-success', 'type-error', 'type-info');
+
+    // Setup types
+    if (type === 'success') {
+        modal.classList.add('type-success');
+        titleElem.textContent = title || "Success!";
+        iconElem.className = "fa-solid fa-circle-check";
+    } else if (type === 'error') {
+        modal.classList.add('type-error');
+        titleElem.textContent = title || "Oops!";
+        iconElem.className = "fa-solid fa-triangle-exclamation";
+    } else if (type === 'info') {
+        modal.classList.add('type-info');
+        titleElem.textContent = title || "Notice";
+        iconElem.className = "fa-solid fa-circle-info";
+    }
+
+    msgElem.textContent = message;
+
+    // Show
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    // Auto dismiss after 5 seconds
+    if (alertTimer) clearTimeout(alertTimer);
+    alertTimer = setTimeout(() => {
+        closeAlert();
+    }, 5000);
+}
+
+function closeAlert() {
+    const modal = document.getElementById('dxGlobalAlert');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+}
 
 // Run Initialization on Load
 document.addEventListener("DOMContentLoaded", () => {
